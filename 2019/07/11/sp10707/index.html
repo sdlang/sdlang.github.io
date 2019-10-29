@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/07/11/sp10707/">
+    
+    
+    <title>SP10707 COT2 - Count on a tree II | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="分块,树上莫队">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>SP10707 COT2 - Count on a tree II</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">SP10707 COT2 - Count on a tree II</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-07-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-sp10707"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">SP10707 COT2 - Count on a tree II</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-11 00:00:00" datetime="2019-07-10T16:00:00.000Z"  itemprop="datePublished">2019-07-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/07/11/sp10707/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/07/11/sp10707/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>给定一个n个节点的树，每个节点表示一个整数，问u到v的路径上有多少个不同的整数。</p>
+<a id="more"></a>
+<p>裸的树上莫队</p>
+<p>其实和普通莫队上一样的，只不过我们要把树转化为线性结构，这就需要欧拉序，我们从根对这棵树进行$dfs$，点进栈时记一个时间戳$st$，出栈时再记一个时间戳$ed$，画个图理解一下</p>
+<figure class="image-box">
+                <a rel=SP10707 COT2 - Count on a tree II href="/imgs/p8.png" title="" data-fancybox="images"><img src="/imgs/p8.png" alt title class></a>
+                <p></p>
+            </figure>
+<p>这棵树的欧拉序为$(1,2,4,5,5,6,6,7,7,4,2,3,3)$，那么每次询问的节点$u,v$有两种情况</p>
+<ol>
+<li><p>$u$在$v$的子树中（$v$在$u$的子树中同理），比如$u=6,v=2$，我们拿出$(st[2],st[6])$这段区间$(2,4,5,5,6)$，$5$出现了两次，因为搜索的时候$5$不属于这条链，所以进去之后就出去了，而出现一次的都在这条链上，就都可以统计</p>
+</li>
+<li><p>$u$和$v$不在同一个子树中，比如$u=5,v=3$，这次拿出$(ed[5],st[3])$这段区间$(5,6,6,7,7,4,2,3)$，要保证$st[u]&lt;st[v]$，出现两次的可以忽略，然而这次只统计了$5,4,2,3$，所以最后再统计上$lca$就好了</p>
+</li>
+</ol>
+<ul>
+<li><p>至于如何忽略掉区间内出现了两次的点，这个很简单，我们多记录一个$use[x]$，表示$x$这个点有没有被加入，每次处理的时候如果$use[x]=0$则需要添加节点；如果$use[x]=1$则需要删除节点，每次处理之后都对$use[x]$异或$1$就可以了</p>
+</li>
+<li><p>而欧拉序可以用树剖来求，$lca$也就求出来了，非常的方便</p>
+</li>
+<li><p>排序的话没有区别，可以普通排序，也可以奇偶性排序</p>
+</li>
+<li><p>因为$st,ed$的大小都是$n$，所以取块的大小时要用$2n$，而不是$n$</p>
+</li>
+<li><p>最后要注意的一点就是这个题权值比较大，需要离散化</p>
+</li>
+</ul>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 200000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> l,r,ll,rr,id,lca;</span><br><span class="line">&#125;q[N+<span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,a[N+<span class="number">5</span>],st[N+<span class="number">5</span>],ed[N+<span class="number">5</span>],dfn[N+<span class="number">5</span>],f[N+<span class="number">5</span>],num,size[N+<span class="number">5</span>],his[N+<span class="number">5</span>],dep[N+<span class="number">5</span>],son[N+<span class="number">5</span>],top[N+<span class="number">5</span>],c[N+<span class="number">5</span>],tmp,blo,l=<span class="number">1</span>,r,use[N+<span class="number">5</span>],ans[N+<span class="number">5</span>],data[N+<span class="number">5</span>];</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; d[N+<span class="number">5</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span>  <span class="comment">//树剖第一次深搜</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	f[u]=fa;st[u]=++num;</span><br><span class="line">	size[u]=<span class="number">1</span>;his[num]=u;</span><br><span class="line">	dep[u]=dep[fa]+<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span> (it=d[u].begin();it!=d[u].end();it++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v=(*it);</span><br><span class="line">		<span class="keyword">if</span> (v==fa)<span class="keyword">continue</span>;</span><br><span class="line">		dfs1(v,u);</span><br><span class="line">		size[u]+=size[v];</span><br><span class="line">		<span class="keyword">if</span> (size[v]&gt;size[son[u]])son[u]=v;</span><br><span class="line">	&#125;</span><br><span class="line">	ed[u]=++num;his[num]=u;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> to)</span>   <span class="comment">//树剖第二次深搜</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	top[u]=to;</span><br><span class="line">	<span class="keyword">if</span> (son[u])dfs2(son[u],to);</span><br><span class="line">	<span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">	<span class="keyword">for</span> (it=d[u].begin();it!=d[u].end();it++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v=(*it);</span><br><span class="line">		<span class="keyword">if</span> (v!=son[u]&amp;&amp;v!=f[u])dfs2(v,v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Lca</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span>   <span class="comment">//树剖求lca</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (top[x]!=top[y])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (dep[top[x]]&lt;dep[top[y]])swap(x,y);</span><br><span class="line">		x=f[top[x]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (dep[x]&gt;dep[y])swap(x,y);</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tmp+=(++c[a[x]]==<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	tmp-=(--c[a[x]]==<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> x)</span>     <span class="comment">//对点进行加入或删除</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	(!use[x])?add(x):del(x);</span><br><span class="line">	use[x]^=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node x,node y)</span>   <span class="comment">//排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x.ll==y.ll)?(x.ll%<span class="number">2</span>==<span class="number">1</span>?x.r&lt;y.r:x.r&gt;y.r):x.l&lt;y.l;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]),data[i]=a[i];</span><br><span class="line">    sort(data+<span class="number">1</span>,data+n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)a[i]=lower_bound(data+<span class="number">1</span>,data+n+<span class="number">1</span>,a[i])-data;  <span class="comment">//离散化</span></span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		d[x].push_back(y);</span><br><span class="line">		d[y].push_back(x);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs1(<span class="number">1</span>,<span class="number">0</span>); </span><br><span class="line">	dfs2(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">	blo=n*<span class="number">2</span>/<span class="built_in">sqrt</span>(m*<span class="number">2</span>/<span class="number">3</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">		<span class="keyword">if</span> (st[x]&gt;st[y])swap(x,y);  <span class="comment">//保证stx&lt;sty</span></span><br><span class="line">		q[i].id=i;</span><br><span class="line">		q[i].lca=Lca(x,y);  </span><br><span class="line">		<span class="keyword">if</span> (q[i].lca==x)    <span class="comment">//x,y在以x为根的子树中</span></span><br><span class="line">		&#123;</span><br><span class="line">			q[i].l=st[x];</span><br><span class="line">			q[i].r=st[y];</span><br><span class="line">			q[i].ll=st[x]/blo;</span><br><span class="line">			q[i].rr=st[y]/blo;</span><br><span class="line">			q[i].lca=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			q[i].l=ed[x];</span><br><span class="line">			q[i].r=st[y];</span><br><span class="line">			q[i].ll=ed[x]/blo;</span><br><span class="line">			q[i].rr=st[y]/blo;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(q+<span class="number">1</span>,q+m+<span class="number">1</span>,cmp);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (l&gt;q[i].l)calc(his[--l]);</span><br><span class="line">		<span class="keyword">while</span> (r&lt;q[i].r)calc(his[++r]);</span><br><span class="line">		<span class="keyword">while</span> (l&lt;q[i].l)calc(his[l++]);</span><br><span class="line">		<span class="keyword">while</span> (r&gt;q[i].r)calc(his[r--]);</span><br><span class="line">		<span class="keyword">if</span> (q[i].lca)calc(q[i].lca);</span><br><span class="line">		ans[q[i].id]=tmp;</span><br><span class="line">		<span class="keyword">if</span> (q[i].lca)calc(q[i].lca);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-27T08:52:49.861Z" itemprop="dateUpdated">2019-08-27 16:52:49</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/07/11/sp10707/" target="_blank" rel="external">https://sdlang.ml/2019/07/11/sp10707/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分块/">分块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树上莫队/">树上莫队</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/07/11/sp10707/&title=《SP10707 COT2 - Count on a tree II》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/07/11/sp10707/&title=《SP10707 COT2 - Count on a tree II》 — 咸鱼小屋&source=给定一个n个节点的树，每个节点表示一个整数，问u到v的路径上有多少个不同的整数。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/07/11/mo/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">莫队</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/07/10/p4450/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">洛谷 P4450 双亲数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/07/11/sp10707/&title=《SP10707 COT2 - Count on a tree II》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/07/11/sp10707/&title=《SP10707 COT2 - Count on a tree II》 — 咸鱼小屋&source=给定一个n个节点的树，每个节点表示一个整数，问u到v的路径上有多少个不同的整数。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABuUlEQVR42u3awY5CIQwFUP//p99sJ5mIt+0DdXJYGYNwcNHQlscjHtefMZmZrDMauLi4Y+61HFVussvvb3IDLi7uee6zDdZLV+ev/461ARcX9/O5a0oe2nBxcf8rd3JhwsXF/WRu7wqSbDYJiLi4uO/iTq4jd33eUt/FxcVtca/iyK8460DWG7i4uGe4eUCpJjOTUsiLdiwuLu5mbi/tSVKdeSr19H/FxcXdzE0uIne1Um6biYuLu5nbC1vr9knvSNFjDlxc3IPcajkjRyfJT3IMXFzck9z59SVvrya/KiQ/uLi427j59tU51QcW0bFxcXGPc/OF8iBVbb28KLDi4uIe4SbXlHyhXhAcJT+4uLhHuNWHVvuarE9n4uLiHuTm7ZA8zCVll7w0g4uLe547eSTRu74kBdMXyQ8uLu4R7iQdqrKaBVlcXNzN3Ks4es8m8nUKEQ4XF3cbtxpcqhtUmy7VFXBxcfdx5yXO6jUob8Hi4uK+l5sHmsmRqnNwcXG/hZuHoUkjtnxiXFzct3J7W04KHzfHXVxc3JibJyr5k4tqQpU8yMDFxT3D7RU7qu2Qux554OLibub+AKyAuWhZ+rU9AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

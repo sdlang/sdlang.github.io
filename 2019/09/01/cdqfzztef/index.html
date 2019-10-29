@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/09/01/cdqfzztef/">
+    
+    
+    <title>cdq分治和整体二分学习笔记 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="整体二分,cdq分治">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>cdq分治和整体二分学习笔记</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">cdq分治和整体二分学习笔记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-31T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-09-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-cdqfzztef"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">cdq分治和整体二分学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-01 00:00:00" datetime="2019-08-31T16:00:00.000Z"  itemprop="datePublished">2019-09-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/09/01/cdqfzztef/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/09/01/cdqfzztef/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>终于学完了cdq分治和整体二分，写篇文章总结下吧qwq</p>
+<a id="more"></a>
+<h2 id="cdq分治"><a href="#cdq分治" class="headerlink" title="cdq分治"></a>cdq分治</h2><p>cdq分治是用来解决经典的偏序问题</p>
+<p>其实归并排序求逆序对就是求偏序问题的做法，当合并左右两个有序的序列时，两个指针分别移动，当右边比左边小时就更新答案</p>
+<p>那么我们回到三维偏序问题，也就是求所有满足$a_i&lt;a_j,b_i&lt;b_j,c_i&lt;c_j$的个数</p>
+<p>首先我们可以对$a$这一维排序，保证第一维有序</p>
+<p>然后对$b$这一维归并，归并的时候将$c$这维加入树状数组，归并完之后更新答案查树状数组就好了</p>
+<p>复杂度$O(nlog^2n)$</p>
+<p>洛谷板子题的代码，因为有重复元素，并且还有$=$，所以还要去重</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a,b,c,w,f;</span><br><span class="line">&#125;d[N + <span class="number">5</span>],t[N + <span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> n,K,cnt,c[N * <span class="number">2</span> + <span class="number">5</span>],ans[N + <span class="number">5</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node x,node y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x.a == y.a)</span><br><span class="line">        <span class="keyword">if</span> (x.b == y.b)</span><br><span class="line">            <span class="keyword">return</span> x.c &lt; y.c;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> x.b &lt; y.b;</span><br><span class="line">    <span class="keyword">return</span> x.a &lt; y.a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = k;i &lt;= K;i += lowbit(i))</span><br><span class="line">        c[i] += x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = k;i;i -= lowbit(i))</span><br><span class="line">        ans += c[i];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cdq_</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    cdq_(l,mid);</span><br><span class="line">    cdq_(mid + <span class="number">1</span>,r);</span><br><span class="line">    <span class="keyword">int</span> ll = l,it = l;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = mid + <span class="number">1</span>;j &lt;= r;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (ll &lt;= mid &amp;&amp; d[ll].b &lt;= d[j].b)</span><br><span class="line">        &#123;</span><br><span class="line">            add(d[ll].c,d[ll].w);</span><br><span class="line">            t[it++] = d[ll];</span><br><span class="line">            ll++;</span><br><span class="line">        &#125;</span><br><span class="line">        d[j].f += query(d[j].c);</span><br><span class="line">        t[it++] = d[j];  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = ll;i &lt;= mid;i++)</span><br><span class="line">        t[it++] = d[i];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l;i &lt; ll;i++)</span><br><span class="line">        add(d[i].c,-d[i].w);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l;i &lt; it;i++)</span><br><span class="line">        d[i] = t[i];    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;K);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;d[i].a,&amp;d[i].b,&amp;d[i].c);</span><br><span class="line">        d[i].w = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(d + <span class="number">1</span>,d + n + <span class="number">1</span>,cmp);</span><br><span class="line">    cnt = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= n;i++)</span><br><span class="line">        <span class="keyword">if</span> (d[cnt].a == d[i].a &amp;&amp; d[cnt].b == d[i].b &amp;&amp; d[cnt].c == d[i].c)</span><br><span class="line">            d[cnt].w++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            d[++cnt] = d[i];</span><br><span class="line">    cdq_(<span class="number">1</span>,cnt);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= cnt;i++)</span><br><span class="line">        ans[d[i].f + d[i].w - <span class="number">1</span>] += d[i].w;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后cdq分治的另一重大用处就是优化dp</p>
+<p>当我们求出转移方程之后，如果转移条件满足偏序的性质，那么就可以用cdq分治来优化</p>
+<p>拿道题来说</p>
+<p>[USACO15FEB]牛跳房子（金）Cow Hopscotch (Gold)</p>
+<p>就像人类喜欢跳格子游戏一样，FJ的奶牛们发明了一种新的跳格子游戏。虽然这种接近一吨的笨拙的动物玩跳格子游戏几乎总是不愉快地结束，但是这并没有阻止奶牛们在每天下午参加跳格子游戏</p>
+<p>游戏在一个R*C的网格上进行，每个格子有一个取值在1-k之间的整数标号，奶牛开始在左上角的格子，目的是通过若干次跳跃后到达右下角的格子，当且仅当格子A和格子B满足如下条件时能从格子A跳到格子B：</p>
+<p>1.B格子在A格子的严格右方(B的列号严格大于A的列号)</p>
+<p>2.B格子在A格子的严格下方(B的行号严格大于A的行号)</p>
+<p>3.B格子的标号和A格子的标号不同</p>
+<p>请你帮助奶牛计算出从左上角的格子到右下角的格子一共有多少种不同的方案</p>
+<p>首先我们可以设$dp_{ij}$表示走到坐标为$(i,j)$这个格子的方案数</p>
+<p>然后很快的写出状态转移方程：$dp_{ij} = \sum_{k=1}^{i-1}\sum_{h=1}^{j-1} dp_{kh} (a_{ij}=a_{kh})$</p>
+<p>但是这样是$O(n^4)$的，于是考虑优化</p>
+<p>可以对列分治然后按行循环，先更新左区间再更新右区间，每次更新答案的时候减掉重复的标号数就可以了</p>
+<p>复杂度$O(n^2log^2n)$</p>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">750</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,k,a[N + <span class="number">5</span>][N + <span class="number">5</span>],f[N + <span class="number">5</span>][N + <span class="number">5</span>],s[N * N + <span class="number">5</span>],t[N * N + <span class="number">5</span>],ti;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cdq_</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    cdq_(l,mid);    </span><br><span class="line">    <span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">    ti++;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= m;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = r;i &gt;= mid + <span class="number">1</span>;i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (t[a[i][j]] &lt; ti)</span><br><span class="line">                t[a[i][j]] = ti,s[a[i][j]] = <span class="number">0</span>;</span><br><span class="line">            f[i][j] = ((f[i][j] + tot - s[a[i][j]]) % p + p) % p;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = l;i &lt;= mid;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (t[a[i][j]] &lt; ti)</span><br><span class="line">                t[a[i][j]] = ti,s[a[i][j]] = <span class="number">0</span>;</span><br><span class="line">            s[a[i][j]] = (s[a[i][j]] + f[i][j]) % p;</span><br><span class="line">            tot = (tot + f[i][j]) % p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cdq_(mid + <span class="number">1</span>,r);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= m;j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i][j]);</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    cdq_(<span class="number">1</span>,n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,f[n][m]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="整体二分"><a href="#整体二分" class="headerlink" title="整体二分"></a>整体二分</h2><p>整体二分是一种多次询问且对于答案可二分的离线做法</p>
+<p>主要思想是将操作离线下来，全部对其二分</p>
+<p>一般复杂度为$O(nlog^2n)$，加一些奇技淫巧可以到$(nlogn)$</p>
+<p>这个做法支持所有答案可以二分，不强制在线且没有区间加的数据结构题</p>
+<p>我们拿区间第k大来说，用$solve(l,r,L,R)$表示$L~R$的询问答案在$[l,r]$范围内</p>
+<p>那么取$mid=l+r&gt;&gt;1$，如果要加的数比$mid$小，那么就加进去，遇到询问直接查前缀和排名（用树状数组维护就可以）</p>
+<p>这样一直二分直到$l=r$就是$L~R$询问的答案了</p>
+<p>我是把询问和点揉在一起二分的，常数可能大点qwq</p>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> M 5000</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">1e9</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Q</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,typ,id,k;</span><br><span class="line">&#125;q[N + M + <span class="number">5</span>],q1[N + M + <span class="number">5</span>],q2[N + M + <span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,cnt,a[N + <span class="number">5</span>],ans[N + <span class="number">5</span>],c[N + <span class="number">5</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; (-x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (;x &lt;= n;x += lowbit(x))</span><br><span class="line">        c[x] += z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (;x;x -= lowbit(x))</span><br><span class="line">        ans += c[x];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> L,<span class="keyword">int</span> R)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (L &gt; R)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = L;i &lt;= R;i++)</span><br><span class="line">            <span class="keyword">if</span> (q[i].typ == <span class="number">2</span>)</span><br><span class="line">                ans[q[i].id] = l;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>,cnt1 = <span class="number">0</span>,cnt2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = L;i &lt;= R;i++)</span><br><span class="line">        <span class="keyword">if</span> (q[i].typ == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (q[i].l &lt;= mid)</span><br><span class="line">            &#123;</span><br><span class="line">                q1[++cnt1] = q[i];</span><br><span class="line">                add(q[i].id,<span class="number">1</span>); </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                q2[++cnt2] = q[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x = query(q[i].r) - query(q[i].l - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (q[i].k &lt;= x)</span><br><span class="line">                q2[++cnt2] = q[i];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                q[i].k -= x;</span><br><span class="line">                q1[++cnt1] = q[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= cnt1;i++)</span><br><span class="line">        <span class="keyword">if</span> (q1[i].typ == <span class="number">1</span>)</span><br><span class="line">            add(q1[i].id,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = L;i &lt;= L + cnt1 - <span class="number">1</span>;i++)</span><br><span class="line">        q[i] = q1[i - L + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = L + cnt1;i &lt;= R;i++)</span><br><span class="line">        q[i] = q2[i - L - cnt1 + <span class="number">1</span>];</span><br><span class="line">    solve(l,mid,L,L + cnt1 - <span class="number">1</span>);</span><br><span class="line">    solve(mid + <span class="number">1</span>,r,L + cnt1,R);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">        q[++cnt] = (Q)&#123;a[i],<span class="number">1</span>,<span class="number">1</span>,i,<span class="number">0</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> l,r,k;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;l,&amp;r,&amp;k);</span><br><span class="line">        q[++cnt] = (Q)&#123;l,r,<span class="number">2</span>,i,k&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    solve(-INF,INF,<span class="number">1</span>,cnt);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然如果有单点修改也是很容易的，我们直接把这个修改操作当成这个位置原来的数$-1$，改成的新数$+1$就好了</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-08T11:21:04.887Z" itemprop="dateUpdated">2019-09-08 19:21:04</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/09/01/cdqfzztef/" target="_blank" rel="external">https://sdlang.ml/2019/09/01/cdqfzztef/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cdq分治/">cdq分治</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/整体二分/">整体二分</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/09/01/cdqfzztef/&title=《cdq分治和整体二分学习笔记》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/09/01/cdqfzztef/&title=《cdq分治和整体二分学习笔记》 — 咸鱼小屋&source=终于学完了cdq分治和整体二分，写篇文章总结下吧qwq" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/09/04/p2634/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">洛谷 P2634 [国家集训队]聪聪可可</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/27/cf1017g/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CF1017G The Tree</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#cdq分治"><span class="post-toc-number">1.</span> <span class="post-toc-text">cdq分治</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#整体二分"><span class="post-toc-number">2.</span> <span class="post-toc-text">整体二分</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/09/01/cdqfzztef/&title=《cdq分治和整体二分学习笔记》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/09/01/cdqfzztef/&title=《cdq分治和整体二分学习笔记》 — 咸鱼小屋&source=终于学完了cdq分治和整体二分，写篇文章总结下吧qwq" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByklEQVR42u3aS5KDMAxFUfa/6WQBCeY+CStU6jJKNbQ5ZqDSx8eBr1fpIqsdOy65cuW2ueSV/O7nymfPkPW/bEmuXLmD3LOIsf7N1yEbRmvKlSv3wVye0KxzFbly5f4Hl1cl6+RGrly5z+fyFCR9GUmVttRqcuXKbXA76chdv7f0d+XKlVvidkYjvKnKn7lYQa5cuSPcfmGTDlA7BZVcuXLnuetwkzZQyMC1+GnkypU7zuVtER62yIcgHrly5c5w05KGJyK1Uuoi8MmVK3eQmyY0nQMZ6X+hLo5cuXJv5ZIbfCyaBr5WC0auXLnbuLX2ZfriWtJzGnflypU7yE2HoLVCiATN02RLrly5g1w+LFk/2flLXKvJlSt3G5e0J3ijk5dDaWIUDIbkypW7gbujIcKHtWiIK1eu3J9yeaFC0pcDXxcry5Urd5Bba4+mQxTOjW/LlSv3Ju4rvGojllpZJVeu3F9x+2lHLT3ipymKm5ErV26bS4IX3186Oo0/hFy5cge5PNDwLaUHuYKGqVy5ch/GjYcfYblV7JrIlSv3AVySxKQhDAnlypU7yO0fz0obr7WDGnLlyp3hdgaf6YHO9fZu7u/KlSu3wn0DYrgp+OTFt+UAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

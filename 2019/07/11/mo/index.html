@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/07/11/mo/">
+    
+    
+    <title>莫队 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="分块,莫队">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>莫队</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">莫队</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-07-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-mo"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">莫队</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-11 00:00:00" datetime="2019-07-10T16:00:00.000Z"  itemprop="datePublished">2019-07-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/07/11/mo/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/07/11/mo/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>蒟蒻终于开始学莫队了，为了印象深刻，写篇文章来及时复习</p>
+<a id="more"></a>
+<h2 id="离线莫队"><a href="#离线莫队" class="headerlink" title="离线莫队"></a>离线莫队</h2><p>先丢个问题：给你一个序列长度为$n$，有$m$次询问，每次询问你$[l,r]$这个区间内有多少个不同的数</p>
+<p>很多数据结构都可以解决这个问题，但我们不用</p>
+<p>先考虑怎么暴力，每次询问时对区间扫一遍，复杂度为$O(nm)$</p>
+<p>这种暴力方法似乎不能优化，那么考虑换一种方法</p>
+<p>用两个指针$l,r$分别指向$[l,r]$这个区间的左端点和右端点，$cnt[i]$表示$i$这个数在$[l,r]$这个区间的出现次数，画个图深刻理解下</p>
+<figure class="image-box">
+                <a rel=莫队 href="/imgs/p5.png" title="" data-fancybox="images"><img src="/imgs/p5.png" alt title class></a>
+                <p></p>
+            </figure>
+<p><del>把数字用颜色来替代应该更容易看</del></p>
+<p>现在$l,r$指向的这个区间内，$cnt_{\text{绿}}=3,cnt_{\text{红}}=2,cnt_{\text{蓝}}=0$，颜色种数$tmp=2$</p>
+<p>我们把$r$指针往右移一个单位，$r$指向了蓝方块<br><figure class="image-box">
+                <a rel=莫队 href="/imgs/p6.png" title="" data-fancybox="images"><img src="/imgs/p6.png" alt title class></a>
+                <p></p>
+            </figure></p>
+<p>于是$cnt_{\text{蓝}}=1$，而蓝色在之前的区间没有出现过，所以相应的$tmp$也要$+1=3$，区间$[l,r]$的颜色种数做出来了</p>
+<p>这是扩大区间，对于缩小区间也是同理的，如果$cnt_{\text{某个颜色}}$减为$0$了，说明这个区间没有这个颜色，那么$tmp$也要$-1$</p>
+<p><strong>Part-Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span>    <span class="comment">//扩大区间</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tmp+=(++cnt[a[x]]==<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span>     <span class="comment">//减小区间</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tmp-=(--cnt[a[x]]==<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> (l&gt;q[i].l)add(--l);</span><br><span class="line"><span class="keyword">while</span> (r&lt;q[i].r)add(++r);</span><br><span class="line"><span class="keyword">while</span> (l&lt;q[i].l)del(l++);</span><br><span class="line"><span class="keyword">while</span> (r&gt;q[i].r)del(r--);    <span class="comment">//移动指针</span></span><br></pre></td></tr></table></figure></p>
+<p>但是这种暴力方法对时间复杂度并没有任何优化，仍然是$O(nm)$</p>
+<p>我们考虑怎么优化</p>
+<ul>
+<li><p>把操作都读下来，按左端点排序。不行，这样子仍然会被卡成$O(nm)$</p>
+</li>
+<li><p>将序列分成$\sqrt n$个长度为$\sqrt n$的块，对于左端点在同一个块里，将其按右端点排序，不在同一块里的按左端点排序。这样就保证了在每个块里的$r$指针都是向右移的，而$l$指针移超不过$\sqrt n$，所以时间复杂度为$O(n\sqrt n)$</p>
+</li>
+</ul>
+<p><strong>Part-Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node x,node y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ((x.l/blo)==(y.l/blo))?(x.r&lt;y.r):(x.l&lt;y.l);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>然后还有一种卡常的排序方式——奇偶性排序，对左端点在同一个块里的询问，如果块的编号是奇数块，那么按升序排，偶数块则按降序排。这样排序的好处是在处理完左端点在一个块里的询问后，不用再从右移到左，所以理论上可以比上一个快一倍</li>
+</ul>
+<p><strong>Part-Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">cmp</span><span class="params">(node x,node y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x.ll==y.ll)?((x.ll%<span class="number">2</span>==<span class="number">1</span>)?(x.r&lt;y.r):(x.r&gt;y.r)):(x.l&lt;y.l);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>最后想说的就是块的大小和时间复杂度是<del>玄学</del>的，所以没有必要非得是$\sqrt n$，对于随机情况来说，将块的大小定为$\frac{n}{\sqrt{\frac{2m}{3}}}$是快一点的</li>
+</ul>
+<h3 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h3><ol>
+<li><a href="https://www.luogu.org/problemnew/show/P1972" target="_blank" rel="noopener">P1972</a>HH的项链</li>
+</ol>
+<p>这道题是裸的莫队题，但是现在不卡常吸氧是过不去了</p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P2709" target="_blank" rel="noopener">P2709</a>小B的询问</li>
+</ol>
+<p>这个是询问区间出现次数的平方和，只需要考虑一下平方的性质就好了</p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P3901" target="_blank" rel="noopener">P3901</a>数列找不同</li>
+</ol>
+<p>题目每次问你区间内的数是否两两不同</p>
+<p>还是一道很裸的板子题啊，更新答案时判断一下不同数的个数和区间长度是否相等就好了，<del>这题暴力好像也能过</del></p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P4113" target="_blank" rel="noopener">P4113</a>采花</li>
+</ol>
+<p>询问区间内出现两次以上的数的个数，但是这个数据范围莫队会t，可以当作莫队练练手</p>
+<p>正解是树状数组，用维护出现一次的思想去想两次，一次的可以去做做<a href="https://www.luogu.org/problemnew/show/P1972" target="_blank" rel="noopener">P1972</a>，总之多会几个方法比只会暴力好的啦</p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P4137" target="_blank" rel="noopener">P4137</a>mex</li>
+</ol>
+<p>询问区间内未出现的最小自然数</p>
+<p>这个题似乎跟之前的不太一样，但是由于数据水，我们仍然可以用莫队水过去</p>
+<p>考虑加点，如果这个点没出现过，那么这个点会影响到答案，我们把答案每次$++$，暴力找到未出现过的</p>
+<p>而删点的时候，如果这个点删去之后就没了，那么可以和答案取个$min$</p>
+<p>复杂度，emmmm，很玄学，能过完全就是数据水</p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P3709" target="_blank" rel="noopener">P3709</a>大爷的字符串题</li>
+</ol>
+<p>询问区间内的众数的出现次数</p>
+<p>依旧维护每个数的出现次数，移动边界的时候注意一下众数个数不是唯一的，根据其性质更新答案就好了</p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P3674" target="_blank" rel="noopener">P3674</a>小清新人渣的本愿</li>
+</ol>
+<p>三种询问，区间内是否存在两个数相加得$x$，两个数相减得$x$，相乘得$x$</p>
+<p><del>不会bitset专门跑去学的</del></p>
+<p>我们用$bitset:S$来维护区间内的数是否出现，拿$A-B=x$来说，移项变为$A=x+B$，也就是如果$S\&amp;(S&lt;&lt;x)$不为零，说明可以</p>
+<p>加法也同理，我们维护一个$N-x$的$bitset$，继续用这个思路来做</p>
+<p>而对于乘法，因为一个数$x$的因子最大到$\sqrt x$，我们直接暴力枚举因子，看有没有出现就可以了</p>
+<h2 id="带修莫队"><a href="#带修莫队" class="headerlink" title="带修莫队"></a>带修莫队</h2><p>其实就是加了个一个单点修改的操作，而离线莫队肯定是不能带修改的，那么我们继续考虑如何处理修改操作</p>
+<ul>
+<li><p>我们对每次询问区间$[l,r]$加一个版本$t$，每次访问的也就是$[l,r,t]$，$t$实际上是表示在第$t$次修改后的序列，处理的时候$t$和$l,r$一样跳就行了，要注意一点就是如果要跳到的版本的修改位置在$[l,r]$中，要修改$cnt_{a_{x}}$</p>
+</li>
+<li><p>要对修改和查询操作分别存储，修改操作要记录当前修改的位置$x$的之前的颜色，这样便于返回上一个版本；查询操作多存一个时间$t$就好了</p>
+</li>
+</ul>
+<p><strong>Part-Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jia1s</span><span class="params">(<span class="keyword">int</span> x)</span>      <span class="comment">//到下一个版本</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l&lt;=p[x].x&amp;&amp;r&gt;=p[x].x)del(p[x].x);</span><br><span class="line">	a[p[x].x]=p[x].z;   <span class="comment">//更新</span></span><br><span class="line">	<span class="keyword">if</span> (l&lt;=p[x].x&amp;&amp;r&gt;=p[x].x)add(p[x].x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jian1s</span><span class="params">(<span class="keyword">int</span> x)</span>     <span class="comment">//到上一个版本</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l&lt;=p[x].x&amp;&amp;r&gt;=p[x].x)del(p[x].x);</span><br><span class="line">	a[p[x].x]=p[x].lx;</span><br><span class="line">	<span class="keyword">if</span> (l&lt;=p[x].x&amp;&amp;r&gt;=p[x].x)add(p[x].x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> (t&lt;q[i].t)jia1s(++t);</span><br><span class="line"><span class="keyword">while</span> (t&gt;q[i].t)jian1s(t--);  移动t指针</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>排序跟离线的是差不多的，多了一点就是如果右端点在一个块里，要按$t$升序排序，同样的，这个排序也可以按奇偶性排序。</li>
+</ul>
+<p><strong>Part-Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cmp(node x,node y)   普通排序</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (x.ll==y.ll)?(x.rr==y.rr?x.t&lt;y.t:x.r&lt;y.r):x.l&lt;y.l;</span><br><span class="line">&#125;</span><br><span class="line">int cmp(node x,node y)   奇偶性排序</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> (x.ll==y.ll)?((x.rr==y.rr)?(x.t&lt;y.t):((x.ll%<span class="number">2</span>==<span class="number">1</span>)?(x.r&lt;y.r):(x.r&gt;y.r))):(x.l&lt;y.l);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>块的大小的话一般选取$n^{\frac{2}{3}}$，块的个数就是$n^{\frac{1}{3}}$，左右端点所在块的种数都为$n^{\frac{1}{3}}$，然后和单个块的移动复杂度$O(n)$乘起来之后复杂度就是$O(n^{\frac{5}{3}})$</li>
+</ul>
+<h3 id="习题-1"><a href="#习题-1" class="headerlink" title="习题"></a>习题</h3><ol>
+<li><a href="https://www.luogu.org/problemnew/show/P1903" target="_blank" rel="noopener">P1903</a>数颜色</li>
+</ol>
+<p>裸的带修莫队，<del>当然也可以树套树</del></p>
+<p>卡卡常，吸个氧才能过，<del>数据对莫队太不友好了</del></p>
+<h2 id="树上莫队"><a href="#树上莫队" class="headerlink" title="树上莫队"></a>树上莫队</h2><p>原来我们的莫队是处理线性结构，这次把它搬到了树上，那么做法是否一样呢？</p>
+<p>其实是基本上一样的，只不过我们要把树转化为线性结构，这就需要欧拉序，我们从根对这棵树进行$dfs$，点进栈时记一个时间戳$st$，出栈时再记一个时间戳$ed$，画个图理解一下</p>
+<figure class="image-box">
+                <a rel=莫队 href="/imgs/p8.png" title="" data-fancybox="images"><img src="/imgs/p8.png" alt title class></a>
+                <p></p>
+            </figure>
+<p>这棵树的欧拉序为$(1,2,4,5,5,6,6,7,7,4,2,3,3,1)$，那么每次询问的节点$u,v$有两种情况</p>
+<ol>
+<li><p>$u$在$v$的子树中（$v$在$u$的子树中同理），比如$u=6,v=2$，我们拿出$(st[2],st[6])$这段区间$(2,4,5,5,6)$，$5$出现了两次，因为搜索的时候$5$不属于这条链，所以进去之后就出去了，而出现一次的都在这条链上，就都可以统计</p>
+</li>
+<li><p>$u$和$v$不在同一个子树中，比如$u=5,v=3$，这次拿出$(ed[5],st[3])$这段区间$(5,6,6,7,7,4,2,3)$，要保证$st[u]&lt;st[v]$，出现两次的可以忽略，然而这次只统计了$5,4,2,3$，所以最后再统计上$lca$就好了</p>
+</li>
+</ol>
+<ul>
+<li><p>至于如何忽略掉区间内出现了两次的点，这个很简单，我们多记录一个$use[x]$，表示$x$这个点有没有被加入，每次处理的时候如果$use[x]=0$则需要添加节点；如果$use[x]=1$则需要删除节点，每次处理之后都对$use[x]$异或$1$就可以了</p>
+</li>
+<li><p>上面说的欧拉序之类的东西都可以用树剖做出来，然后就做完了</p>
+</li>
+<li><p>因为$st,ed$的大小都是$n$，所以取块的大小时要用$2n$，而不是$n$</p>
+</li>
+</ul>
+<h3 id="习题-2"><a href="#习题-2" class="headerlink" title="习题"></a>习题</h3><ol>
+<li><a href="https://www.luogu.org/problemnew/show/SP10707" target="_blank" rel="noopener">SP10707</a>COT2</li>
+</ol>
+<p>裸的树上莫队，注意下权值很大要离散化就好了</p>
+<ol>
+<li><a href="https://www.luogu.org/problemnew/show/P4689" target="_blank" rel="noopener">P4689</a>[Ynoi]这是我自己的发明</li>
+</ol>
+<p>由乃oi题个个都很<del>毒瘤</del></p>
+<p>询问两个点子树中权值相等的数对个数，支持换根操作</p>
+<p>首先我们要知道还完根后对于一个点$x$，我们应该如何去找其子树，有三种情况：</p>
+<p>我们默认树根是$1$，每次记录下换的根$rt$</p>
+<ul>
+<li><p>$x=rt$，子树是整棵树</p>
+</li>
+<li><p>$lca(x,rt)\ne x$，直接访问$x$的子树</p>
+</li>
+<li><p>$lca(x,rt)=x$，子树为与$x$的相邻的点中和$rt$最近的点的补集</p>
+</li>
+</ul>
+<p>既然已经会处理换根的操作，那么询问也就很好做了</p>
+<p>我们用$f_{l,r\cap L,R}$来表示$l-r$与$L-R$这两个区间的答案，$f_{1,n\cap1,i}$可以预处理出来，然后对于不同种情况，大力容斥一波，剩下的只需要求$f_{l,r\cap L,R}$，转换成$4$个莫队求解就可以了</p>
+<h2 id="树上带修莫队"><a href="#树上带修莫队" class="headerlink" title="树上带修莫队"></a>树上带修莫队</h2><p>其实只需要把树上莫队和带修莫队结合起来就好了，然后要注意一点</p>
+<ul>
+<li>在更新版本的时候，我们不能像以前一样判断在不在$[l,r]$这个区间内更新值，而是看这个位置有没有被选，这应该非常好理解</li>
+</ul>
+<p><strong>Part-Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jia1s</span><span class="params">(<span class="keyword">int</span> x)</span>     <span class="comment">//到下一个版本</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (use[p[x].x])   <span class="comment">//被选了</span></span><br><span class="line">	&#123;</span><br><span class="line">		calc(p[x].x);</span><br><span class="line">		a[p[x].x]=p[x].z;</span><br><span class="line">		calc(p[x].x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> a[p[x].x]=p[x].z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">jian1s</span><span class="params">(<span class="keyword">int</span> x)</span>    <span class="comment">//到上一个版本</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (use[p[x].x])   <span class="comment">//被选了</span></span><br><span class="line">	&#123;</span><br><span class="line">		calc(p[x].x);</span><br><span class="line">		a[p[x].x]=p[x].lx;</span><br><span class="line">		calc(p[x].x);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> a[p[x].x]=p[x].lx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>取块的大小注意下是$2n$就好了，排序什么的跟之前是一样的<h3 id="习题-3"><a href="#习题-3" class="headerlink" title="习题"></a>习题</h3></li>
+</ul>
+<p><a href="https://www.luogu.org/problemnew/show/P4074" target="_blank" rel="noopener">P4074</a>糖果公园</p>
+<p>这个题询问树上两点路径之间$\sum_i\sum_jV_i\times W_j$，$i$为出现的糖果的种类，$j$为出现的次数，所以很显然就是用莫队维护了</p>
+<p>注意一下统计答案时的操作就好了</p>
+<hr>
+<h3 id="如果有其他莫队的题我会慢慢放上来的QAQ"><a href="#如果有其他莫队的题我会慢慢放上来的QAQ" class="headerlink" title="如果有其他莫队的题我会慢慢放上来的QAQ"></a>如果有其他莫队的题我会慢慢放上来的QAQ</h3>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-27T08:53:34.204Z" itemprop="dateUpdated">2019-08-27 16:53:34</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/07/11/mo/" target="_blank" rel="external">https://sdlang.ml/2019/07/11/mo/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分块/">分块</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/莫队/">莫队</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/07/11/mo/&title=《莫队》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/07/11/mo/&title=《莫队》 — 咸鱼小屋&source=蒟蒻终于开始学莫队了，为了印象深刻，写篇文章来及时复习" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/07/15/cf86d/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CF86D Powerful array</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/07/11/sp10707/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SP10707 COT2 - Count on a tree II</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#离线莫队"><span class="post-toc-number">1.</span> <span class="post-toc-text">离线莫队</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#习题"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">习题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#带修莫队"><span class="post-toc-number">2.</span> <span class="post-toc-text">带修莫队</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#习题-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">习题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#树上莫队"><span class="post-toc-number">3.</span> <span class="post-toc-text">树上莫队</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#习题-2"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">习题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#树上带修莫队"><span class="post-toc-number">4.</span> <span class="post-toc-text">树上带修莫队</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#习题-3"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">习题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如果有其他莫队的题我会慢慢放上来的QAQ"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">如果有其他莫队的题我会慢慢放上来的QAQ</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/07/11/mo/&title=《莫队》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/07/11/mo/&title=《莫队》 — 咸鱼小屋&source=蒟蒻终于开始学莫队了，为了印象深刻，写篇文章来及时复习" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByklEQVR42u3aQY7CMBAEQP7/aVba00psTLedmCCVTxGBuMJhZPf48YjH83e0d8efj5+5NHBxcZe5z+F4nfjo+ojyen30nbEBFxd3P3dchsYTJJT8ld7YcHFxb8Ztp8wXRri4uN/LHaOT6XFxcb+Lm2x+VsrZuMxdslfDxcVd4LaB6RXXF+a7uLi4JfdZjjz0TNon9ey4uLhbuG2csdJoyZc4b8ocLi7uxdy2EdIuSuZCk6iE4eLifpSbg/LjFwXx769wcXG3cPPgsl2m5BFqse3BxcXdzp0rN+3xi/yvOYxacHFxt3DnylDbbpkrgifsq3BxcUtuvuWYi0GTli0uLu6duQl0paHSHvP652m4uLgbuXkMul6eouDj6OVxcXE3cpOSNPfJeiCLi4u7n/smlEyCy/g4xco1Li7uTu5cQ/TcA1vJLLi4uPu5Kw3UvFdTdHWOfoWLi7uR24YXedyZP2eyD4yLi3sBty0oc7FIfkgrv4uLi3s1Ny867bsmYUpSFovqi4uLeyo3L15zbZL1Zi0uLu49uSuLlfYFTihkuLi4N+C2hWxuE4WLi7uT24akLbGNTk6IRXBxcRe4bWDahqTnHtvCxcW9mPsDah2VjK0GNcMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

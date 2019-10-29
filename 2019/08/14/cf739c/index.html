@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/08/14/cf739c/">
+    
+    
+    <title>CF739C Alyona and towers | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="线段树">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>CF739C Alyona and towers</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">CF739C Alyona and towers</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-13T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-08-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-cf739c"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">CF739C Alyona and towers</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-14 00:00:00" datetime="2019-08-13T16:00:00.000Z"  itemprop="datePublished">2019-08-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/08/14/cf739c/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/08/14/cf739c/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>题意：维护区间最大的先上升后下降的子段长度，支持区间加</p>
+<a id="more"></a>
+<p>这个题似乎很熟悉，想必你肯定做过它的简化版——最大上升子序列</p>
+<p>那么遇到这样的题我们应该怎么做呢，别着急，我们一步一步来</p>
+<ul>
+<li>我们肯定是要用线段树维护答案，那么左右儿子怎么合并答案呢，有这么几种情况：</li>
+</ul>
+<figure class="image-box">
+                <a rel=CF739C Alyona and towers href="/imgs/p3.png" title="" data-fancybox="images"><img src="/imgs/p3.png" alt title class></a>
+                <p></p>
+            </figure>
+<blockquote>
+<ul>
+<li><p>前两种情况就是继承左右儿子的$ans$</p>
+</li>
+<li><p>第三种是左儿子中以右端点结尾的$ans+$右儿子中以左端点开始的最长下降序列长度（左儿子的右端点$&gt;$右儿子的左端点）</p>
+</li>
+<li><p>第四种是右儿子中以左端点开始的$ans+$左儿子中以右端点结束的最长上升序列长度（左儿子的左端点$&lt;$右儿子的左端点）</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>维护以左右端点开始或结尾的$zans,yans$也是类似的，以$zans$来说</li>
+</ul>
+<figure class="image-box">
+                <a rel=CF739C Alyona and towers href="/imgs/p1.png" title="" data-fancybox="images"><img src="/imgs/p1.png" alt title class></a>
+                <p></p>
+            </figure>
+<blockquote>
+<ul>
+<li><p>第一种情况就是左儿子的$zans$</p>
+</li>
+<li><p>第二种情况是左儿子的$zans+$右儿子中以左端点开始的最长下降序列长度（左儿子的右端点$&gt;$右儿子的左端点）</p>
+</li>
+<li><p>第三种情况是左儿子的区间长度$+$右儿子的$zans$（左儿子中以右端点结尾的最长上升序列长度$=$左儿子的区间长度并且左儿子的右端点$&lt;$右儿子的左端点）</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>然后是维护左右端点开始或结束的最长下降或上升的序列长度$zlen,ylen$，以$zlen$来说</li>
+</ul>
+<figure class="image-box">
+                <a rel=CF739C Alyona and towers href="/imgs/p2.png" title="" data-fancybox="images"><img src="/imgs/p2.png" alt title class></a>
+                <p></p>
+            </figure>
+<blockquote>
+<ul>
+<li>第一种情况是左儿子的$zlen$</li>
+<li>第二种情况是左儿子的$zlen+$右儿子的$zlen$（左儿子的$zlen=$左儿子的区间长度并且左儿子的右端点$&gt;$右儿子的左端点）</li>
+</ul>
+</blockquote>
+<p>然后这道题就做完啦</p>
+<p>我们整理一下刚才要维护的东西</p>
+<ul>
+<li><p>答案$ans$</p>
+</li>
+<li><p>左端点$z$</p>
+</li>
+<li><p>右端点$y$ </p>
+</li>
+<li><p>区间长度$len$</p>
+</li>
+<li><p>左端点开始的答案$zans$</p>
+</li>
+<li><p>左端点开始的最长下降序列长度$zlen$</p>
+</li>
+<li><p>右端点结束的答案$yans$</p>
+</li>
+<li><p>右端点结束的最长上升序列长度$ylen$</p>
+</li>
+</ul>
+<p>至于区间加的操作，对于一个子树而言只影响左右端点，所以正常的打标记下放就可以了</p>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 300000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> zrt k &lt;&lt; 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> yrt k &lt;&lt; 1 | 1</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[N + <span class="number">5</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> ans,za,ya,zl,yl,len;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> z,y,tag;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Seg</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    node s[N * <span class="number">4</span> + <span class="number">5</span>];</span><br><span class="line">    <span class="function">node <span class="title">upd</span><span class="params">(node x,node y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        node k;</span><br><span class="line">        k.len = x.len + y.len;</span><br><span class="line">        k.z = x.z;</span><br><span class="line">        k.y = y.y;</span><br><span class="line">        k.zl = x.zl;</span><br><span class="line">        <span class="keyword">if</span> (x.zl == x.len &amp;&amp; x.y &gt; y.z)</span><br><span class="line">            k.zl += y.zl;</span><br><span class="line">        k.yl = y.yl;</span><br><span class="line">        <span class="keyword">if</span> (y.yl == y.len &amp;&amp; x.y &lt; y.z)</span><br><span class="line">            k.yl += x.yl;</span><br><span class="line">        k.za = x.za;</span><br><span class="line">        <span class="keyword">if</span> (k.za == x.len &amp;&amp; x.y &gt; y.z)</span><br><span class="line">            k.za += y.zl;</span><br><span class="line">        <span class="keyword">if</span> (x.yl == x.len &amp;&amp; x.y &lt; y.z)</span><br><span class="line">            k.za = max(k.za,x.yl + y.za);</span><br><span class="line">        k.ya = y.ya;</span><br><span class="line">        <span class="keyword">if</span> (k.ya == y.len &amp;&amp; x.y &lt; y.z)</span><br><span class="line">            k.ya += x.yl;</span><br><span class="line">        <span class="keyword">if</span> (y.zl == y.len &amp;&amp; x.y &gt; y.z)</span><br><span class="line">            k.ya = max(k.ya,y.zl + x.ya);</span><br><span class="line">        k.ans = max(x.ans,y.ans);</span><br><span class="line">        <span class="keyword">if</span> (x.y &gt; y.z)</span><br><span class="line">            k.ans = max(k.ans,x.ya + y.zl);</span><br><span class="line">        <span class="keyword">if</span> (x.y &lt; y.z)</span><br><span class="line">            k.ans = max(k.ans,y.za + x.yl);</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == r)</span><br><span class="line">        &#123;</span><br><span class="line">            s[k].ans = <span class="number">1</span>;</span><br><span class="line">            s[k].ya = <span class="number">1</span>;</span><br><span class="line">            s[k].za = <span class="number">1</span>;</span><br><span class="line">            s[k].zl = <span class="number">1</span>;</span><br><span class="line">            s[k].yl = <span class="number">1</span>;</span><br><span class="line">            s[k].z = (<span class="keyword">long</span> <span class="keyword">long</span>)a[l];</span><br><span class="line">            s[k].y = (<span class="keyword">long</span> <span class="keyword">long</span>)a[l];</span><br><span class="line">            s[k].len = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        build(zrt,l,mid);</span><br><span class="line">        build(yrt,mid + <span class="number">1</span>,r);</span><br><span class="line">        s[k] = upd(s[zrt],s[yrt]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jia</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">long</span> <span class="keyword">long</span> z)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        s[k].z += z;</span><br><span class="line">        s[k].y += z;</span><br><span class="line">        s[k].tag += z;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> mid)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!s[k].tag)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        jia(zrt,l,mid,s[k].tag);</span><br><span class="line">        jia(yrt,mid + <span class="number">1</span>,r,s[k].tag);</span><br><span class="line">        s[k].tag = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">long</span> <span class="keyword">long</span> z)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l &gt;= x &amp;&amp; r &lt;= y)</span><br><span class="line">        &#123;</span><br><span class="line">            jia(k,l,r,z);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        pushdown(k,l,r,mid);</span><br><span class="line">        <span class="keyword">if</span> (x &gt; mid)</span><br><span class="line">            add(yrt,mid + <span class="number">1</span>,r,x,y,z);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">if</span> (y &lt;= mid)</span><br><span class="line">                add(zrt,l,mid,x,y,z);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                add(zrt,l,mid,x,y,z),add(yrt,mid + <span class="number">1</span>,r,x,y,z);</span><br><span class="line">        s[k] = upd(s[zrt],s[yrt]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;tree;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">    tree.build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">    <span class="keyword">int</span> l,r;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> z;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%lld"</span>,&amp;l,&amp;r,&amp;z);</span><br><span class="line">        tree.add(<span class="number">1</span>,<span class="number">1</span>,n,l,r,z);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,tree.s[<span class="number">1</span>].ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-27T08:37:26.803Z" itemprop="dateUpdated">2019-08-27 16:37:26</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/08/14/cf739c/" target="_blank" rel="external">https://sdlang.ml/2019/08/14/cf739c/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/08/14/cf739c/&title=《CF739C Alyona and towers》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/08/14/cf739c/&title=《CF739C Alyona and towers》 — 咸鱼小屋&source=题意：维护区间最大的先上升后下降的子段长度，支持区间加" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/08/15/cf444c/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CF444C DZY Loves Colors</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/08/08/shaid/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">关于d函数的筛法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/08/14/cf739c/&title=《CF739C Alyona and towers》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/08/14/cf739c/&title=《CF739C Alyona and towers》 — 咸鱼小屋&source=题意：维护区间最大的先上升后下降的子段长度，支持区间加" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzUlEQVR42u3aQY6DMAwF0N7/0p3tjCrgO8ahI72sEKXJg4UV23m94vH+GL/vfz559OvnbK+JgYuL2+a+T0fyTLLw+asWZsbFxd3IPVoguc7v5AHx8D4uLu5XctfQ1flxcXH/F/eInm+DHou7uLi4RW6+BUk2MZ2t0m25Gi4uboObVynnrkfqu7i4uEvcd3F0CqxrK/6ZARcXdws3DygdXLUUctGOxcXFHeaeT9cpjHaghRCGi4s7wE3KE51GyNr8hS0OLi7uALeceMShbSTw4eLibuR2th152pO3T6LkBxcXdwu3X9DMW6Q352q4uLi3cjvHI6JabPFDlOu7uLi4A9w8sbmrEZukQIcbJlxc3I3cZKKkhDHx38OCKS4u7hh3ugBaLZpETRpcXNyN3POH1hKetYPdF58DFxf3UW7eak3izPkrFSIVLi7uQ9y8+ZFvXPJxMQ8uLu4wt9MuzcNf9ehG9F1xcXHHuNXgci8oCYKLL4OLi9vm5gvnxzL6/42SH1xc3GHuWmJTWCZOkKKCKS4u7pdxq9fVrdJi1QQXF/dR7lrLpFP4uCHu4uLiLnHzAsc5rlo0qYZOXFzcPdxO47OzfLK5adV3cXFxV7g/vPg/DTdxhwMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

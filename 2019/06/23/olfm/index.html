@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/06/23/olfm/">
+    
+    
+    <title>欧拉定理以及费马小定理的推论和证明 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="数论">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>欧拉定理以及费马小定理的推论和证明</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">欧拉定理以及费马小定理的推论和证明</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-22T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-06-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-olfm"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">欧拉定理以及费马小定理的推论和证明</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-23 00:00:00" datetime="2019-06-22T16:00:00.000Z"  itemprop="datePublished">2019-06-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/06/23/olfm/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/06/23/olfm/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>今天连续对着三篇博客终于懂了<strong>欧拉定理</strong>和<strong>费马小定理</strong>的推论和证明，及时复习以免忘记。</p>
+<a id="more"></a>
+<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><p>内容：若正整数$a,n$互质，那么$a^{\varphi(n)} \equiv 1(mod n)$</p>
+<p>证明：我们知道1~n中和$n$互质的数有${\varphi(n)}$个，为$x_{1},x_{2},x_{3}……x_{\varphi(n)}$，那么就可以设一个集合$M$，其元素为</p>
+<p>$m_{1}=a\times x_{1}$</p>
+<p>$m_{2}=a\times x_{2}$</p>
+<p>$m_{3}=a\times x_{3}$</p>
+<p>$……$</p>
+<p>$m_{\varphi(n)}=a\times x_{\varphi(n)}$</p>
+<p>那么得到两条性质</p>
+<p><strong>性质一</strong>：集合$M$中的任意两个元素都不模$n$同余</p>
+<p>证明：反证法。</p>
+<p>假设$M$中有两个元素$m_{i},m_{j}$模$n$同余</p>
+<p>所以$m_{i}\equiv m_{j}(mod n)$</p>
+<p>替换得$a\times x_{i}\equiv a\times x_{j}(mod n)$</p>
+<p>根据同余的同加性得到$a\times (x_{i}-x_{j})\equiv 0(mod n)$</p>
+<p>因为$a$和$n$互质，所以$x_{i}-x{j}$是$n$的倍数</p>
+<p>而每个$x_{i}$和$x_{j}$都比$n$小，所以上述结论不成立，原结论成立。</p>
+<p>证毕</p>
+<p><strong>性质二</strong>：集合$M$中的数除以$n$的余数都与$n$互质</p>
+<p>证明：首先$m_{i}=a\times x_{i}$，其中$x_{i},a$都与与$n$互质，那么$m_{i}$与$n$互质</p>
+<p>由互质得$gcd(m_{i},n)=1$</p>
+<p>由欧几里得定理得$gcd(m_{i},n)=gcd(n,m_{i} mod n)=1$</p>
+<p>证毕</p>
+<p>然后就可以化式子了</p>
+<p>由<strong>性质二</strong>我们知道集合$M$中所有元素模$n$都能找到唯一一个$x_{i}$与其对应，即对于每个$m_{i}$都有一个$x_{j}$和它模$n$同余</p>
+<p>那么把它们乘起来得到</p>
+<p>$m_{1}\times m_{2}\times m_{3}……m_{\varphi (n)}\equiv x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}(mod n)$</p>
+<p>带入</p>
+<p>$a\times x_{1}\times a\times x_{2}\times a\times x_{3}……a\times x_{\varphi (n)}\equiv x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}(mod n)$</p>
+<p>化简</p>
+<p>$a^{\varphi(n)}\times x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}\equiv x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}(mod n)$</p>
+<p>根据同余的同乘性得</p>
+<p>$a^{\varphi(n)} \equiv 1(mod n)$</p>
+<p>证毕</p>
+<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p>内容：若$p$是质数，则对于任意正整数$a$，有$a^p\equiv a(mod p)$</p>
+<p>证明：根据欧拉函数的性质可得$\varphi(p)=p-1$</p>
+<p>则$a^{\varphi(p)+1}\equiv a(mod p)$</p>
+<p>由欧拉定理可得$a^{\varphi(p)}\equiv 1(mod p)$成立</p>
+<p>故原式成立</p>
+<p>证毕</p>
+<h3 id="欧拉定理的推论"><a href="#欧拉定理的推论" class="headerlink" title="欧拉定理的推论"></a>欧拉定理的推论</h3><p>内容：若正整数$a,n$互质，则对于任意正整数$b$，都有$a^b\equiv a^{b mod \varphi(n)}(mod n)$</p>
+<p>证明：移项得$a^{b-b mod \varphi(n)}\equiv 1(mod n)$</p>
+<p>因为$\varphi(n)|b-b mod \varphi(n)$，所以可设$b-b mod \varphi(n)=k\times \varphi(n)$</p>
+<p>式子变为$a^{k\times \varphi(n)}\equiv 1(mod n)$</p>
+<p>$(a^{k})^{\varphi(n)}\equiv 1(mod n)$</p>
+<p>由于$a,n$互质，那么$a^{k},n$也互质</p>
+<p>再根据<strong>欧拉定理</strong>，原式成立</p>
+<p>证毕</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-08T11:20:27.333Z" itemprop="dateUpdated">2019-09-08 19:20:27</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/06/23/olfm/" target="_blank" rel="external">https://sdlang.ml/2019/06/23/olfm/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&source=今天连续对着三篇博客终于懂了欧拉定理和费马小定理的推论和证明，及时复习以免忘记。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/06/24/p3846/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">洛谷 P3846 [TJOI2007]可爱的质数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/06/23/p3868/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">洛谷 P3868 [TJOI2009]猜数字</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧拉定理"><span class="post-toc-number">1.</span> <span class="post-toc-text">欧拉定理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#费马小定理"><span class="post-toc-number">2.</span> <span class="post-toc-text">费马小定理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧拉定理的推论"><span class="post-toc-number">3.</span> <span class="post-toc-text">欧拉定理的推论</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&source=今天连续对着三篇博客终于懂了欧拉定理和费马小定理的推论和证明，及时复习以免忘记。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3aS47CMBAFwNz/0pkDoJjX7c8AKq8Qwk6ZxZPT7euKx/0wklnj1a4dAxcXd5p7D8fTA3r01xVyAy4u7nnuOIby0MkRyfq4uLjfwn39/VPojDeJi4v7e9z8uJMfmHBxcT+Nmx9B7tbI/4Jl72q4uLgT3N4rzdrPW+q7uLi4LW4vjOa31IxCXFzcI9w8UJIWS7LJapDh4uJ+JjcplfY2WZ2Fi4t7kjsfMb3fJ9e2ov8YFxd3Kbe3v2rDddxESSISFxf3f7m9xmfSRs1LJI8r4+LiHuTmVyt6BdDoUkVyeMLFxT3CrV7MSuKmemzKZ+Hi4p7nVi9JJAea3gHoTYEVFxd3MzePqupjquWP8rsaLi7uNm7vCJI3TpKgbPZPcXFxN3Nz4gx6TCm0XnBxcY9zZx45s7HCCri4uAe5PWhCv4rjzSxcXNzN3Ls4eu2W6vdRwuHi4m7jrjp29AooecOmvBlcXNxpbrVIOnOFohpw5fTFxcVdys2DprqN6uvQm1m4uLhfxc3TphqFW4IMFxd3A7f6sJnCx4Igw8XFbXGr1y/ygkheNIniEhcX9wh3pvHZu+jZK6ng4uIe4f4BmWviMfJZ2tYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

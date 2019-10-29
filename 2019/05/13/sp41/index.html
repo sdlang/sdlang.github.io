@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/05/13/sp41/">
+    
+    
+    <title>SP41 WORDS1 - Play on Words | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="图论,欧拉路径">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>SP41 WORDS1 - Play on Words</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">SP41 WORDS1 - Play on Words</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-12T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-sp41"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">SP41 WORDS1 - Play on Words</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-13 00:00:00" datetime="2019-05-12T16:00:00.000Z"  itemprop="datePublished">2019-05-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/05/13/sp41/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/05/13/sp41/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>秘密的门里藏着一些字谜。一些考古学家希望打开这些门，因此他们需要解开这些字谜。由于没有任何其他方式（不要总想着暴力！）可以打开这扇门，这个字谜对我们来说尤其重要。 每一扇门上都有很多磁性的盘子，每一个盘子上面都写着一个单词。这些盘子必须要按照一种特殊的顺序排列，即除了第一个单词以外的每一个单词的首字母必须是前面一个单词的结尾字母。你的任务就是编写一个程序，测试给出的单词能否按照要求的顺序排列并且顺利地打开这扇门。<br>对每一个单词从首字母连一条到尾字母的有向边，然后判断是不是欧拉路径。</p>
+<a id="more"></a>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>``` cpp</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <iostream></iostream></h1><h1 id="include-1"><a href="#include-1" class="headerlink" title="include "></a>include <algorithm></algorithm></h1><h1 id="include-2"><a href="#include-2" class="headerlink" title="include "></a>include <vector></vector></h1><h1 id="include-3"><a href="#include-3" class="headerlink" title="include "></a>include <cstdio></cstdio></h1><h1 id="include-4"><a href="#include-4" class="headerlink" title="include "></a>include <queue></queue></h1><h1 id="include-5"><a href="#include-5" class="headerlink" title="include "></a>include <cstring></cstring></h1><p>using namespace std;<br>int t,n,in[50],to[50],cnt,vis[50],f[50];<br>char ch[2000];<br>vector <int> a[50];<br>void clear()<br>{<br>    for (int i=1;i&lt;=26;i++)<br>        vis[i]=f[i]=in[i]=to[i]=0,a[i].clear();<br>}<br>int bfs(int st)       //bfs判断基图是否连通<br>{<br>    queue <int> q;<br>    q.push(st);<br>    vector <int>::iterator it;<br>    vis[st]=1;<br>    int num=1;<br>    while (!q.empty())<br>    {<br>        int u=q.front();q.pop();<br>        for (it=a[u].begin();it!=a[u].end();it++)<br>        {<br>            int v=(*it);<br>            if (!vis[v])<br>                q.push(v),vis[v]=1,num++;<br>        }<br>    }<br>    int x=0;<br>    for (int i=1;i&lt;=26;i++)<br>        if (f[i])<br>            x++;<br>    if (num==x)<br>        return 1;<br>    return 0;<br>}<br>int main()<br>{<br>    cin&gt;&gt;t;<br>    while (t—)<br>    {<br>        clear();<br>        cin&gt;&gt;n;<br>        int fl1=0,fl2=0,fl3=0,st=0;<br>        for (int i=1;i&lt;=n;i++)<br>        {<br>            scanf(“%s”,ch+1);<br>            int l=strlen(ch+1),u=ch[1]-‘a’+1,v=ch[l]-‘a’+1;<br>            a[u].push_back(v);<br>            a[v].push_back(u);<br>            to[u]++;     //出度<br>            in[v]++;     //入度<br>            f[u]=1;<br>            f[v]=1;<br>            st=u;       //bfs时随便的一个起点<br>        }<br>        for (int i=1;i&lt;=26;i++)<br>            if (in[i]==to[i])<br>                fl3++;<br>            else<br>                if (in[i]==to[i]+1)<br>                    fl1++;<br>                else<br>                    if (in[i]+1==to[i])<br>                        fl2++;<br>        if ((fl3==24&amp;&amp;fl1&amp;&amp;fl2||fl3==26)&amp;&amp;bfs(st))  //判断欧拉路径<br>            cout&lt;&lt;”Ordering is possible.”&lt;&lt;endl;<br>        else<br>            cout&lt;&lt;”The door cannot be opened.”&lt;&lt;endl;<br>    }<br>    return 0;<br>}<br>~~~</int></int></int></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-27T03:16:42.618Z" itemprop="dateUpdated">2019-08-27 11:16:42</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/05/13/sp41/" target="_blank" rel="external">https://sdlang.ml/2019/05/13/sp41/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图论/">图论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/欧拉路径/">欧拉路径</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/05/13/sp41/&title=《SP41 WORDS1 - Play on Words》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/05/13/sp41/&title=《SP41 WORDS1 - Play on Words》 — 咸鱼小屋&source=秘密的门里藏着一些字谜。一些考古学家希望打开这些门，因此他们需要解开这些字谜。由于没有任何其他方式（不要总想着暴力！）可以打开这扇门，这个字谜对我们来说尤..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/05/14/uva302/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">UVA302 John&#39;s trip</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/05/12/p2169/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">P2169 正则表达式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Code"><span class="post-toc-number">1.</span> <span class="post-toc-text">Code</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#include"><span class="post-toc-number"></span> <span class="post-toc-text">include </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#include-1"><span class="post-toc-number"></span> <span class="post-toc-text">include </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#include-2"><span class="post-toc-number"></span> <span class="post-toc-text">include </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#include-3"><span class="post-toc-number"></span> <span class="post-toc-text">include </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#include-4"><span class="post-toc-number"></span> <span class="post-toc-text">include </span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#include-5"><span class="post-toc-number"></span> <span class="post-toc-text">include </span></a>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/05/13/sp41/&title=《SP41 WORDS1 - Play on Words》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/05/13/sp41/&title=《SP41 WORDS1 - Play on Words》 — 咸鱼小屋&source=秘密的门里藏着一些字谜。一些考古学家希望打开这些门，因此他们需要解开这些字谜。由于没有任何其他方式（不要总想着暴力！）可以打开这扇门，这个字谜对我们来说尤..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB0klEQVR42u3aS24CMRAFQO5/aSJlFYkwec89Y0ZReRUFjMubVn/8eMTr+b3e/f/403bXCQsXF3fMfR6u14Nfj3n99Hjvu+8cG3Bxcfdzj8NQErCSqyZX+sOGi4t7M26bBh3vwsXF/R/cJLlZux4uLu49uUmakhQnSUKTFEUn1Gq4uLgDbtswveLvC/u7uLi4JfdZrrYhkrRCitNxcXG3cNt2xvGRbRmz9ju4uLhXc9vSpS1L8uFKsgsXF3cndy0YJQ8sogboMfHnLlxc3A9x82FJHrDa4FgEMlxc3Au4k+cXbTGTj0/+GMPg4uJezG3Hq0mLpE5cgm8uToNxcXHH3KR0SQJQPlbJL4aLi7uTu9bgyHHzouiX6+Hi4m7hTsalyQGThx24uLj7uW2TdJ7QJOnR21/AxcXdwm1HpEk9kgfHxZEtLi7uxdx5atI+s2gDIi4u7qe4j3K1TdV5iMTFxd3PnQSsyUOrYnxywnsuXFzchYhRlDdtatI2X6L+Li4u7sXcPOicRZkMaHFxcXdy10Yga8lQ237FxcW9MzcPQG3AKpovuLi4N+bmxCQ4JkNZXFzc/dy2uTkZzbatkMVaDRcXd8CdNEzz8LTWisXFxd3O/QI2imzDu5fh3gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

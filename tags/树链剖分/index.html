@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/tags/树链剖分/">
+    
+    
+    <title>标签: 树链剖分 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content>
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class=" active">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>标签: 树链剖分</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header tags-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">标签: 树链剖分</h1>
+        <h5 class="subtitle">
+            
+        </h5>
+        
+    </div>
+    
+<div class="tabs-bar container">
+    <nav class="tags-list">
+        <a href="/tags" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
+            ">全部</a>
+        
+            <a href="/tags/数论/" backup-style="-webkit-order:37;order:37" class="tags-list-item waves-effect waves-button waves-light">数论</a>
+            
+        
+            <a href="/tags/lucas/" backup-style="-webkit-order:38;order:38" class="tags-list-item waves-effect waves-button waves-light">lucas</a>
+            
+        
+            <a href="/tags/组合数/" backup-style="-webkit-order:39;order:39" class="tags-list-item waves-effect waves-button waves-light">组合数</a>
+            
+        
+            <a href="/tags/卡特兰数/" backup-style="-webkit-order:40;order:40" class="tags-list-item waves-effect waves-button waves-light">卡特兰数</a>
+            
+        
+            <a href="/tags/前缀和/" backup-style="-webkit-order:41;order:41" class="tags-list-item waves-effect waves-button waves-light">前缀和</a>
+            
+        
+            <a href="/tags/整体二分/" backup-style="-webkit-order:42;order:42" class="tags-list-item waves-effect waves-button waves-light">整体二分</a>
+            
+        
+            <a href="/tags/cdq分治/" backup-style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">cdq分治</a>
+            
+        
+            <a href="/tags/树链剖分/" backup-style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light active">树链剖分</a>
+            
+        
+            <a href="/tags/线段树/" backup-style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">线段树</a>
+            
+        
+            <a href="/tags/状压dp/" backup-style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">状压dp</a>
+            
+        
+            <a href="/tags/分块/" backup-style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">分块</a>
+            
+        
+            <a href="/tags/莫队/" backup-style="-webkit-order:5;order:5" class="tags-list-item waves-effect waves-button waves-light">莫队</a>
+            
+        
+            <a href="/tags/倍增/" backup-style="-webkit-order:6;order:6" class="tags-list-item waves-effect waves-button waves-light">倍增</a>
+            
+        
+            <a href="/tags/二分答案/" backup-style="-webkit-order:7;order:7" class="tags-list-item waves-effect waves-button waves-light">二分答案</a>
+            
+        
+            <a href="/tags/贪心/" backup-style="-webkit-order:8;order:8" class="tags-list-item waves-effect waves-button waves-light">贪心</a>
+            
+        
+            <a href="/tags/树上dp/" backup-style="-webkit-order:9;order:9" class="tags-list-item waves-effect waves-button waves-light">树上dp</a>
+            
+        
+            <a href="/tags/动态开点/" backup-style="-webkit-order:10;order:10" class="tags-list-item waves-effect waves-button waves-light">动态开点</a>
+            
+        
+            <a href="/tags/树上差分/" backup-style="-webkit-order:11;order:11" class="tags-list-item waves-effect waves-button waves-light">树上差分</a>
+            
+        
+            <a href="/tags/lca/" backup-style="-webkit-order:12;order:12" class="tags-list-item waves-effect waves-button waves-light">lca</a>
+            
+        
+            <a href="/tags/最短路/" backup-style="-webkit-order:13;order:13" class="tags-list-item waves-effect waves-button waves-light">最短路</a>
+            
+        
+            <a href="/tags/图论/" backup-style="-webkit-order:14;order:14" class="tags-list-item waves-effect waves-button waves-light">图论</a>
+            
+        
+            <a href="/tags/缩点/" backup-style="-webkit-order:15;order:15" class="tags-list-item waves-effect waves-button waves-light">缩点</a>
+            
+        
+            <a href="/tags/扩展欧几里得/" backup-style="-webkit-order:16;order:16" class="tags-list-item waves-effect waves-button waves-light">扩展欧几里得</a>
+            
+        
+            <a href="/tags/中国剩余定理/" backup-style="-webkit-order:17;order:17" class="tags-list-item waves-effect waves-button waves-light">中国剩余定理</a>
+            
+        
+            <a href="/tags/dp/" backup-style="-webkit-order:18;order:18" class="tags-list-item waves-effect waves-button waves-light">dp</a>
+            
+        
+            <a href="/tags/区间dp/" backup-style="-webkit-order:19;order:19" class="tags-list-item waves-effect waves-button waves-light">区间dp</a>
+            
+        
+            <a href="/tags/并查集/" backup-style="-webkit-order:20;order:20" class="tags-list-item waves-effect waves-button waves-light">并查集</a>
+            
+        
+            <a href="/tags/点分治/" backup-style="-webkit-order:21;order:21" class="tags-list-item waves-effect waves-button waves-light">点分治</a>
+            
+        
+            <a href="/tags/树套树/" backup-style="-webkit-order:22;order:22" class="tags-list-item waves-effect waves-button waves-light">树套树</a>
+            
+        
+            <a href="/tags/树状数组/" backup-style="-webkit-order:23;order:23" class="tags-list-item waves-effect waves-button waves-light">树状数组</a>
+            
+        
+            <a href="/tags/bsgs/" backup-style="-webkit-order:24;order:24" class="tags-list-item waves-effect waves-button waves-light">bsgs</a>
+            
+        
+            <a href="/tags/平衡树/" backup-style="-webkit-order:25;order:25" class="tags-list-item waves-effect waves-button waves-light">平衡树</a>
+            
+        
+            <a href="/tags/矩阵加速/" backup-style="-webkit-order:26;order:26" class="tags-list-item waves-effect waves-button waves-light">矩阵加速</a>
+            
+        
+            <a href="/tags/莫比乌斯反演/" backup-style="-webkit-order:27;order:27" class="tags-list-item waves-effect waves-button waves-light">莫比乌斯反演</a>
+            
+        
+            <a href="/tags/dijkstra/" backup-style="-webkit-order:28;order:28" class="tags-list-item waves-effect waves-button waves-light">dijkstra</a>
+            
+        
+            <a href="/tags/动态dp/" backup-style="-webkit-order:29;order:29" class="tags-list-item waves-effect waves-button waves-light">动态dp</a>
+            
+        
+            <a href="/tags/树上莫队/" backup-style="-webkit-order:30;order:30" class="tags-list-item waves-effect waves-button waves-light">树上莫队</a>
+            
+        
+            <a href="/tags/根号分治/" backup-style="-webkit-order:31;order:31" class="tags-list-item waves-effect waves-button waves-light">根号分治</a>
+            
+        
+            <a href="/tags/主席树/" backup-style="-webkit-order:32;order:32" class="tags-list-item waves-effect waves-button waves-light">主席树</a>
+            
+        
+            <a href="/tags/欧拉路径/" backup-style="-webkit-order:33;order:33" class="tags-list-item waves-effect waves-button waves-light">欧拉路径</a>
+            
+        
+            <a href="/tags/欧拉回路/" backup-style="-webkit-order:34;order:34" class="tags-list-item waves-effect waves-button waves-light">欧拉回路</a>
+            
+        
+            <a href="/tags/Trie/" backup-style="-webkit-order:35;order:35" class="tags-list-item waves-effect waves-button waves-light">Trie</a>
+            
+        
+            <a href="/tags/可持久化Trie/" backup-style="-webkit-order:36;order:36" class="tags-list-item waves-effect waves-button waves-light">可持久化Trie</a>
+            
+        
+    </nav>
+    <!-- PC show more-->
+    <div class="tags-list-more">
+        <a href="javascript:;" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
+    </div>
+</div>
+
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<div class="container body-wrap fade">
+    
+            <div class="waterfall">
+                
+                <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2019-08-27 00:00:00" datetime="2019-08-26T16:00:00.000Z"  itemprop="datePublished">2019-08-27</time>
+
+      
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+
+
+    </div>
+    
+
+
+  
+    <h3 class="post-title " itemprop="name">
+      <a class="post-title-link" href="/2019/08/27/cf1017g/">CF1017G The Tree</a>
+    </h3>
+  
+
+
+
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树链剖分/">树链剖分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li></ul>
+
+    </div>
+    
+  </article>
+</div>
+        
+            </div>
+        
+    
+</div>
+
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/tags/树链剖分/&title=咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/tags/树链剖分/&title=咸鱼小屋&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzklEQVR42u3aQW6EMAwFUO5/aSp11YqS+Y5DRKWXFcowzGMWlmP7OOJ1fq/rzs91vfP6ret3jycWLi5um3sO15h7d518Ot6/fSVcXNyN3HHwGoee6ksmd97u4+Livoxbva4GOFxc3P/IzXGdNAgXF/c93OTwU70zL7U8clbDxcVtcKsF0yeuH6zv4uLiFrlnceXPGTdOzqmFi4u7h5u0SZL9pIHaKZpE/V5cXNyl3P44RZVezWRwcXF3cqsFiFVjGXnz9ddzcHFxt3D3VxsW/CIuLu7D3OTn8zuTsFX9O/6o4uDi4m7h5klJdZxiXF7JE6Aow8LFxV3E7Q9mVVOZ8ZEJFxf3bdy5gJUXRjvoqCyCi4u7iJsnJf1DTvLXfDh64eLibuTmgaxaOlk1coGLi7uTO9c6zffzYY5CUoWLi/swd66xOpcY9VMlXFzcndy5saq8WVIoho6PW7i4uBu5nXCWH29ajdX+BBkuLu5MxIherH8Q6pRUcHFxd3KrZdMOPR+5uA1wuLi4G7nVwaz8gDT3Gh/qu7i4uK/h5m3XvGVbTYxwcXHfz82ToWUDGbi4uBu5q4qbawe5WmURXFzcBrdTMM2bsquejIuL+zD3C4kctHtb4Y3qAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

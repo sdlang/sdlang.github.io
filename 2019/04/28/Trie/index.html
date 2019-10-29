@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/04/28/Trie/">
+    
+    
+    <title>Trie与可持久化Trie | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="主席树,Trie,可持久化Trie">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Trie与可持久化Trie</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Trie与可持久化Trie</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-27T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Trie"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Trie与可持久化Trie</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-28 00:00:00" datetime="2019-04-27T16:00:00.000Z"  itemprop="datePublished">2019-04-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/04/28/Trie/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/04/28/Trie/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h5 id="经过两天的奋斗，我终于点满了Trie树的技能树"><a href="#经过两天的奋斗，我终于点满了Trie树的技能树" class="headerlink" title="经过两天的奋斗，我终于点满了Trie树的技能树"></a>经过两天的奋斗，我终于点满了Trie树的<del>技能树</del></h5><a id="more"></a>
+<h4 id="Trie树（字典树）"><a href="#Trie树（字典树）" class="headerlink" title="Trie树（字典树）"></a>Trie树（字典树）</h4><p>顾名思义，对于一个字符串，将其各个字符建成树，其中包含一定的父子关系（第$i$个字符是第$i+1$个字符的父亲），像这样，当对若干个字符串进行建树操作时，两两字符串的公共部分就会沿着树走下来，在不同处分叉，<del>这个显然是很好理解的</del>。<br><figure class="image-box">
+                <a rel=Trie与可持久化Trie href="/imgs/p9.png" title="" data-fancybox="images"><img src="/imgs/p9.png" alt title class></a>
+                <p></p>
+            </figure><br>我们看着个图，原先的Trie树已经有了$ABC$,$AC$,$BC$这三个串（根节点为空）。当要插入$CD$这个串时，由于原来的树没有以$C$为字节点的子树，那么就只能将这个串插到根节点下面；而插入$ACBD$这个串时，由于原树已经有了一条$AC$的路径，那么我们只需要把$BD$接到$C$后面即可。</p>
+<p>这个操作看起来简单，其实用代码实现起来也是很简单的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> *ch)</span>      <span class="comment">//trie[u][x]表示u节点的x字符指针指向的节点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> u=<span class="number">0</span>,l=<span class="built_in">strlen</span>(ch+<span class="number">1</span>);<span class="comment">//u为初始指针指向根节点 </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=l;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x=ch[i]-<span class="string">'A'</span>;   <span class="comment">//每次取出字符串中的第i位 </span></span><br><span class="line">		<span class="keyword">if</span> (!trie[u][x])trie[u][x]=++tot;  <span class="comment">//如果Trie中没有x这个节点，那就插进去 </span></span><br><span class="line">		u=trie[u][x];      <span class="comment">//往下走 </span></span><br><span class="line">	&#125;</span><br><span class="line">	p[u]=<span class="number">1</span>;                <span class="comment">//给结尾打标记 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么查询操作也是同理，从选取字符串的每一位，从树根往下遍历就可以了。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">char</span> *ch)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	int u(0),l=strlen(ch+1);//u位初始指针指向根节点 </span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=l;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x=ch[i]-<span class="string">'A'</span>;   <span class="comment">//取出 </span></span><br><span class="line">		<span class="keyword">if</span> (!trie[u][x])<span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//指针指向空，表示匹配不成功，直接退出 </span></span><br><span class="line">		u=trie[u][x];     <span class="comment">//往下走 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p[u];          <span class="comment">//返回结尾标记值 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>时间复杂度：单次$O(l)$。空间复杂度：$O(\sum_{i=1}^{N}l[i]*B)$($B$为字符集大小)</p>
+<p><strong>习题</strong></p>
+<p><a href="https://www.luogu.org/problemnew/show/UVA11362" target="_blank" rel="noopener">Phone List</a></p>
+<p>给出$N$个字符串，看是否有一个串$A$为串$B$的前缀。</p>
+<p>因为我们在Trie树插入操作中已经对每一串字符串都打上了标记，所以满足答案的关系只有两种，一种是插入的串是之前的串的前缀，那么只要看在插入过程中是不是没有新增节点，另一种是插入的串包括之前的串，也就是之前的串是插入的串的前缀，这个只要看看有没有走到打了标记的点就好了。</p>
+<p><a href="https://www.luogu.org/paste/7sof43mz" target="_blank" rel="noopener">完整代码</a> <del>把清空写炸了害我交了好几次</del></p>
+<p><a href="https://www.luogu.org/problemnew/show/P2292" target="_blank" rel="noopener">L语言</a></p>
+<p>给出$N$个单词，和$M$个句子，问每个句子中包含这些单词的最长前缀是多少。</p>
+<p>考虑对着$M$个单词建一个Trie树，$f[i]$表示前$i$个字符是否可行，便可以每次访问$<a href="0\leq j&lt; l">j+1,l</a>$，在访问过程中访问到标记，就可以直接更新$f[i]$，复杂度$O(NM)$.</p>
+<p><a href="https://www.luogu.org/paste/of99xobs" target="_blank" rel="noopener">完整代码</a> 不在$query$函数中更新$f[i]$复杂度是$O(N^2M)$，会TLE！</p>
+<p><a href="https://www.luogu.org/problemnew/show/P2922" target="_blank" rel="noopener">秘密消息Secret Message</a></p>
+<p>给出$N$个01串，和$M$个01串，问这$M$个串的每一个串中满足和这$N$个串其中的一个串有着相同的前缀（前者是后者的前缀或后者是前者的前缀）。</p>
+<p>再用一个数组$q[u]$来记录经过$u$节点有多少个01串，用$p[u]$来记录以$u$节点结尾的01串有多少个，我们先每次往后访问，用$p[u]$来更新$ans$,答案显而易见也只有两种可能，一种是走到一个指向空的节点，这时候只要返回$ans$就好了，另一种是这个串包含了路径上的所有串，这时要返回$ans+q[u]-p[u]$（因为有重复计算，这个自己模拟下感性理解就好了）。</p>
+<p><a href="https://www.luogu.org/paste/lt2r1lun" target="_blank" rel="noopener">完整代码</a> <del>没啥好说的emmmm</del></p>
+<h4 id="01Trie"><a href="#01Trie" class="headerlink" title="01Trie"></a>01Trie</h4><p>Trie树就只能对着字符串<del>一顿胡乱操作</del>？答案肯定不是。有一类题，让你求出一些数中$A\oplus B$的最大值。我们很容易想到用枚举暴力去求，但是复杂度$O(N^2)$着实让人受不了，于是就可以用01Trie进行求解。</p>
+<p>就拿刚才的题目——<a href="https://loj.ac/problem/10050" target="_blank" rel="noopener">最大异或数对</a>来说，考虑把所有的数转成二进制插入Trie树中，那么接下来有一种贪心的策略：因为对于两个二进制数，只有这一位上不同，也就是一个是$0$一个一个是$1$才会取$1$，否则取$0$，那么在找数的过程中贪心的走和当前位相反的那一位，如果相反那一位指向空，就只能走下面这一位，这样子就找到了序列中和这一个数最大的异或值，只需要从$[1,N]$的各个数找一个最大的答案即可。</p>
+<p>这样说太抽象，我们看下面这张图：<br><figure class="image-box">
+                <a rel=Trie与可持久化Trie href="/imgs/p10.png" title="" data-fancybox="images"><img src="/imgs/p10.png" alt title class></a>
+                <p></p>
+            </figure><br>我们把$9(1001)$，$7(0111)$，$5(0101)$，$2(0010)$依次插入树中（最高位补足0），当我们要找和$9$异或的最大值，只需要贪心的走反路就可以啦，没有反路那就只能往下走了。<del>感性理解感性理解</del></p>
+<p>而由于题目的数据一般会<del>比较大</del>，我们需要建一个$30$位的01Trie。</p>
+<p>代码实现起来也很简单</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	int u(0),an(0);      //an记录当前数x与序列中的数的异或最大值 </span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">30</span>;i&gt;=<span class="number">0</span>;i--)   <span class="comment">//从高到低位走 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;  <span class="comment">//取出 </span></span><br><span class="line">		<span class="keyword">if</span> (trie[u][!ch])u=trie[u][!ch],an+=<span class="number">1</span>&lt;&lt;i;  </span><br><span class="line">       <span class="comment">//如果可以走反路，就走反路，更新an </span></span><br><span class="line">		<span class="keyword">else</span> u=trie[u][ch];  <span class="comment">//走不了就只能往下走了 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> an; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时空复杂度：单次$O(log\text{值域})$，总共$O(Nlog\text{值域})$，已经可以满足很多题的需要了。</p>
+<p><a href="https://www.luogu.org/paste/ns3th1xa" target="_blank" rel="noopener">完整代码</a> 一定要按题目数据来开树的长度！</p>
+<p><strong>习题</strong></p>
+<p><a href="https://loj.ac/problem/10051" target="_blank" rel="noopener">Nikitosh 和异或</a></p>
+<p>在一个有$N$个元素的序列$A$中，找出$(A[l1]\oplus A[l1+1]\oplus …\oplus A[r1])+(A[l2]\oplus A[l2+1]\oplus…\oplus A[r2])$的最大值，其中，$1\le l1\le r1&lt;l2\le r2\le N$。</p>
+<p>设$l[i]$表示$1\le l\le r\le i$，最大的$A[l]\oplus A[l+1]\oplus…\oplus A[r]$，$r[i]$表示$i\le l\le r\le N$最大的$A[l]\oplus A[l+1]\oplus…\oplus A[r]$，那么答案为最大的$l[i]+r[i+1]$。</p>
+<p>我们首先要知道一个异或的性质：对于一个序列$A$的区间$[l,r]$,都有$A[l]\oplus A[l+1]\oplus…\oplus A[r]=(A[1]\oplus A[2]\oplus…\oplus A[l-1])\oplus(A[1]\oplus A[2]\oplus…\oplus A[r])$</p>
+<p>于是设$x[i]$表示$A[0]\oplus A[1]\oplus…\oplus A<a href="A[0]=0">i</a>$，所以$l[i]=max(x[i]\oplus x[j])(0\le j&lt;i)$，$r[i]=max(x[i]\oplus x[j])(i&lt;j\le N)$</p>
+<p>然后这个题就很好做啦。</p>
+<p><a href="https://www.luogu.org/paste/6dq7s81k" target="_blank" rel="noopener">完整代码</a> <del>数组开大千万别RE</del></p>
+<p><a href="https://www.luogu.org/problemnew/show/P4551" target="_blank" rel="noopener">最长异或路径</a></p>
+<p>给定一棵$N$个点的带权树，结点下标从$1$开始到$N$。寻找树中找两个结点，求最长的异或路径。（异或路径指的是指两个结点之间唯一路径上的所有边权的异或）</p>
+<p><del>题意感性理解好了</del></p>
+<p>先$dfs$跑出所有节点到根节点的异或路径丢进$xorr$数组中，问题便转化成了求最大的$xorr[i]\oplus xorr<a href="i,j\in N,i\ne j">j</a>$，是不是似曾相识呢，没错，这道题就变成了最大异或数对啦！</p>
+<p><a href="https://www.luogu.org/paste/kntcyi7a" target="_blank" rel="noopener">完整代码</a> <del>我竟然写炸了快读？？？</del></p>
+<h4 id="可持久化数据结构——主席树"><a href="#可持久化数据结构——主席树" class="headerlink" title="可持久化数据结构——主席树"></a>可持久化数据结构——主席树</h4><p>主席树？？？？？这个Trie有什么关系吗？别着急，当然是有关系啦。<del>没关系我也不会去学啊（大雾</del></p>
+<p>主席树，全名可持久化线段树，是一种支持对历史版本修改和访问的数据结构，主要思想就是对其每个版本都建一棵线段树。</p>
+<p>然而这样子空间和时间都受不了，而我们想每次建新的线段树过程中，并不是所有元素都不一样，许多元素都是上个版本继承过来的，于是只要把<del>这些碎片拼在一起</del>，就是主席树了。</p>
+<figure class="image-box">
+                <a rel=Trie与可持久化Trie href="/imgs/p11.png" title="" data-fancybox="images"><img src="/imgs/p11.png" alt title class></a>
+                <p></p>
+            </figure>
+<p>我们看这个图片，假设黑色的是第一个版本，红色的是第二个版本，也就是新的版本，当新建红色这个树时，只需要继承上个版本的一些元素，再修改并重新拼接元素就可以了，这样时空复杂度都是很优秀的。</p>
+<p>板子题——<a href="https://www.luogu.org/problemnew/show/P3919" target="_blank" rel="noopener">可持久化数组</a></p>
+<p>基本操作就拿这个题来说吧。</p>
+<p><strong>存储变量</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ff</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> lc,rc,val;	  <span class="comment">//存放左子树，右子树，权值</span></span><br><span class="line">&#125;s[<span class="number">40000500</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,a[<span class="number">40000500</span>],rt[<span class="number">40000500</span>],node_cnt; <span class="comment">//a表示序列，rt是根，node_cnt是节点数</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>建树</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> &amp;k,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	k=++node_cnt;     <span class="comment">//新的一个节点 </span></span><br><span class="line">	<span class="keyword">if</span> (l==r)</span><br><span class="line">	&#123;</span><br><span class="line">		s[k].val=a[l];</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	build(s[k].lc,l,mid);   <span class="comment">//更新左子树 </span></span><br><span class="line">	build(s[k].rc,mid+<span class="number">1</span>,r); <span class="comment">//更新右子树 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>和线段树的建树方式差不了多少，就不详细说了。</p>
+<p><strong>修改</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">change</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x,<span class="keyword">int</span> cnt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> root=++node_cnt;    <span class="comment">//更新也要新建节点 </span></span><br><span class="line">	s[root]=s[k];           <span class="comment">//继承  </span></span><br><span class="line">	<span class="keyword">if</span> (l==r)</span><br><span class="line">	&#123;</span><br><span class="line">		s[root].val=cnt;    <span class="comment">//点修改 </span></span><br><span class="line">		<span class="keyword">return</span> root;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (x&lt;=mid)s[root].lc=change(s[root].lc,l,mid,x,cnt); <span class="comment">//更新左子树 </span></span><br><span class="line">	<span class="keyword">else</span> s[root].rc=change(s[root].rc,mid+<span class="number">1</span>,r,x,cnt);     <span class="comment">//更新右子树 </span></span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>也和线段树是差不多的。</p>
+<p><strong>访问</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (l==r)<span class="keyword">return</span> s[k].val;    <span class="comment">//点访问 </span></span><br><span class="line">	<span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (x&lt;=mid)<span class="keyword">return</span> query(s[k].lc,l,mid,x);<span class="comment">//如果在左边，就找左子树 </span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> query(s[k].rc,mid+<span class="number">1</span>,r,x);    <span class="comment">//如果在右边，就找右子树 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这就是主席树啦！是不是很<del>简单</del>。</p>
+<p><a href="https://www.luogu.org/paste/6f8i1ru9" target="_blank" rel="noopener">完整代码</a> 我再也不乱用没返回值的函数了，然后再次感谢<a href="https://www.luogu.org/discuss/show/111913" target="_blank" rel="noopener">评论区</a>的大佬：<a href="https://www.luogu.org/space/show?uid=22136" target="_blank" rel="noopener">qwaszx</a>（dsq）,<a href="https://www.luogu.org/space/show?uid=30036" target="_blank" rel="noopener">Mital</a>。</p>
+<p>另一道板子题——<a href="https://www.luogu.org/problemnew/show/P3834" target="_blank" rel="noopener">可持久化线段树1</a></p>
+<p>先对序列排序+离散化，然后在离散化的数组的基础下建一颗空的主席树，对于每一个区间$[1,i]$插入到主席树，访问的时候只要将主席树$[1,r]-[1,l-1]$就是区间$[l,r]$了，推荐去看这篇<a href="https://www.luogu.org/blog/LpyNowlover/solution-p3834" target="_blank" rel="noopener">博客</a>，因为我不太会讲。<del>还不是没理解</del></p>
+<p><a href="https://www.luogu.org/paste/f3kmuspq" target="_blank" rel="noopener">完整代码</a> 数组一定不要开小了！</p>
+<h4 id="可持久化Trie"><a href="#可持久化Trie" class="headerlink" title="可持久化Trie"></a>可持久化Trie</h4><p>学完主席树，就可以学可持久化Trie啦，我们先看这道题——<a href="https://www.luogu.org/problemnew/show/P4735" target="_blank" rel="noopener">最大异或和</a></p>
+<p>有一个序列$A$，每次可以进行两种操作，一是在序列尾插入一个数，序列长度$N$变为$N+1$，二是在区间$[l,r]$中找到一个$p$,满足$l\le p\le r$,并使得$A[p]\oplus A[p+1]\oplus…\oplus A[N]\oplus x$最大，输出这个最大值。</p>
+<p>首先，我们把这个式子拆开，也就变成了$(A[1]\oplus A[2]\oplus…\oplus A[N])\oplus(A[1]\oplus A[2]\oplus…\oplus A[p-1])\oplus x$，<del>似乎很简单</del>，但是这道题还有一个在末尾插入的操作，就需要我们用到可持久化Trie了。</p>
+<p>其实可持久化Trie和主席树的思想是类似的，实现方式也有相同之处，就是对每一个前缀异或建一个01Trie，该继承的继承，该修改的修改，这样就完成了。</p>
+<p><strong>插入</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">    <span class="keyword">int</span> rt=root[node_cnt];      <span class="comment">//取出上一个根节点的信息</span></span><br><span class="line">    root[++node_cnt]=++node;    <span class="comment">//新建节点</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">24</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;     <span class="comment">//取出</span></span><br><span class="line">        size[node]=size[rt]+<span class="number">1</span>; <span class="comment">//长度增加</span></span><br><span class="line">        trie[node][ch]=node+<span class="number">1</span>; <span class="comment">//给节点编号</span></span><br><span class="line">        trie[node][!ch]=trie[rt][!ch]; <span class="comment">//继承上一个根节点的部分子树信息</span></span><br><span class="line">        rt=trie[rt][ch];     <span class="comment">//往下走</span></span><br><span class="line">        node++;</span><br><span class="line">    &#125;</span><br><span class="line">    size[node]=size[rt]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>访问</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lc=root[l],rc=root[r],ans=<span class="number">0</span>; <span class="comment">//取出左右子树</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">24</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;        <span class="comment">//取出</span></span><br><span class="line">        <span class="keyword">if</span> (size[trie[rc][!ch]]-size[trie[lc][!ch]]&gt;<span class="number">0</span>) </span><br><span class="line">        		<span class="comment">//如果反路有路可走</span></span><br><span class="line">            lc=trie[lc][!ch],rc=trie[rc][!ch],ans|=<span class="number">1</span>&lt;&lt;i;</span><br><span class="line">            	<span class="comment">//走反路并更新答案</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            lc=trie[lc][ch],rc=trie[rc][ch];  </span><br><span class="line">            	<span class="comment">//否则只能往下走</span></span><br><span class="line">    &#125;</span><br><span class="line">    write(ans);</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>时空复杂度：总共：$O(31(N+M))$</p>
+<p><del>代码应该是比较好理解的</del></p>
+<p>对于这个题，每次插入一次前缀异或，共$N+$访问中位添加操作的次数，访问时只要访问区间$[l-1,r]$的答案就好了。</p>
+<p><a href="https://www.luogu.org/paste/f4btmtyw" target="_blank" rel="noopener">完整代码</a> 不会卡常的我写了点奇怪的卡常+$O2$竟然跑到了最优解$Rank57$？？？</p>
+<p>今年省选还考了一道Trie树的题——<a href="https://www.luogu.org/problemnew/show/P5283" target="_blank" rel="noopener">异或粽子</a>，相信参加省选的dalao看到这么简单的题都切掉了，我这个初四蒟蒻反正看到题是不会做。</p>
+<p>这道题其实是让你求在长度为$N$的序列$A$中，前$K$大的$A[l]\oplus A[l+1]\oplus…\oplus A<a href="1\le l\le r\le N">r</a>$，的和。</p>
+<p><del>反正我刚开始是不会做</del>，在<a href="https://www.luogu.org/space/show?uid=22136" target="_blank" rel="noopener">dsq</a>神仙的帮助和指点下，<del>彻底的大彻大悟</del>。</p>
+<p>其实就是先对序列$A$进行一个前缀异或得到序列$sum$，然后只要求$K$对最大的$sum[i]\oplus sum<a href="0\le i\le j\le N">j</a>$，就好了。</p>
+<p>那么我们该怎么求呢，在我<del>迷茫无助之时</del>，dsq给我指点了道题<a href="https://www.luogu.org/problemnew/show/P1631" target="_blank" rel="noopener">序列合并</a>。</p>
+<p>拿这道题来说，我们要对序列$A$，$B$升序排序，然后将$A[i]+B[1]$丢进小根堆中，每次取出堆顶，然后把$A[i]+B[2]$丢进去，如果丢过了，那就丢$A[i]+B[3]$，同理往下，就做完啦。</p>
+<p>回到这道题，仔细一样是不是和那道题的思想一样呢？我们用堆存值，编号（也就是$i$）和第几大就好了。</p>
+<p>可是怎么求第$k$大的值呢？我们依旧建一个01Trie，访问便用到了平衡树（然而我并不会平衡树）的思想，在建树的时候多存一个$size[u]$记录$u$的子树大小，在访问时看能不能走反路，如果可以走，那就要看看$k$和$size[trie[u][!ch]]$大小，如果$k\le size[trie[u][!ch]]$,那么答案在反着的那条路径，我们就走，并更新$ans$值，否则答案就在不走反的那条路径，走，并且$k$要减去$size[trie[u][!ch]]$，这个就很显然了。</p>
+<p>也可以选择去看dsq的<a href="https://www.luogu.org/blog/qwaszx/solution-p5283" target="_blank" rel="noopener">题解</a>。</p>
+<p><a href="https://www.luogu.org/paste/24pm13in" target="_blank" rel="noopener">完整代码</a> 一定要开longlong</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-27T08:52:40.608Z" itemprop="dateUpdated">2019-08-27 16:52:40</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/04/28/Trie/" target="_blank" rel="external">https://sdlang.ml/2019/04/28/Trie/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Trie/">Trie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/主席树/">主席树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/可持久化Trie/">可持久化Trie</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/04/28/Trie/&title=《Trie与可持久化Trie》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/04/28/Trie/&title=《Trie与可持久化Trie》 — 咸鱼小屋&source=经过两天的奋斗，我终于点满了Trie树的技能树" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/05/12/p2169/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">P2169 正则表达式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/03/27/p1168/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">洛谷 P1168 中位数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Trie树（字典树）"><span class="post-toc-number">1.</span> <span class="post-toc-text">Trie树（字典树）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#01Trie"><span class="post-toc-number">2.</span> <span class="post-toc-text">01Trie</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可持久化数据结构——主席树"><span class="post-toc-number">3.</span> <span class="post-toc-text">可持久化数据结构——主席树</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可持久化Trie"><span class="post-toc-number">4.</span> <span class="post-toc-text">可持久化Trie</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/04/28/Trie/&title=《Trie与可持久化Trie》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/04/28/Trie/&title=《Trie与可持久化Trie》 — 咸鱼小屋&source=经过两天的奋斗，我终于点满了Trie树的技能树" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB0klEQVR42u3aS27DMAwFwN7/0inQbWL5UZRUBxitDCexJ1oQ/OjnJ16vv/V+fXUnuX/16YKFi4vb5r6Ga0xM7r9fX31nbMDFxT3PTYJXEpjm/mohFOLi4j6MO35ZnvokaRMuLu63cOfSGlxc3O/lJmlKErCqZdLGWg0XF7fB7TRMV10f6u/i4uK2pxJJUMsHJNUm6Ye34+LiHuF2hqbVVkie4tyEOVxc3M3cfBSaFz/jnCRvpN6EMFxc3G3c6pfyFmfnqFa0Hbi4uNu4Ow5RrXrCZdzFxcXdzF0bnqqlUZ48RXkZLi7uIm6S+3RapdXRbFTw4OLibuZW05q57mW+Tbi4uE/g5o3L6kGrTgJ0uVm4uLgHuZ2xaLWwiRofV+/CxcU9yK2ejewURfkzL0cpuLi4m7k7jluN1/gPRx5cXNzN3LwImUt38j1LxrG4uLgnuXON1EJHNhjTRr/CxcU9yK02Lzoj1cnBaqfXgouLW+TOFS3VwLeq/YqLi3uSO9cezROXfuDDxcX9L+7cga1qslINiDejFFxc3Adw1x63St7+4VNcXNxHcssHJooF0s3zcXFxD3LzJml1rJIfw4o2BRcX9wi33zCtNkpWhUtcXNwN3F+jLk3UVWhWhAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
