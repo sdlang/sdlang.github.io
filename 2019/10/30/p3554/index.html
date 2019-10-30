@@ -3,13 +3,13 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     
-    <link rel="canonical" href="true/2019/06/23/olfm/">
+    <link rel="canonical" href="true/2019/10/30/p3554/">
     
     
-    <title>欧拉定理以及费马小定理的推论和证明 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <title>洛谷 P3554 [POI2013]LUK-Triumphal arch | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="数论">
+    <meta name="keywords" content="二分答案,树上dp">
     <link rel="shortcut icon" href="/img/QAQ.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.4">
@@ -177,7 +177,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>欧拉定理以及费马小定理的推论和证明</span>
+            <span>洛谷 P3554 [POI2013]LUK-Triumphal arch</span>
             
         </div>
         
@@ -190,15 +190,15 @@
 <header class="content-header post-header">
     <img src="/img/banner2.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">欧拉定理以及费马小定理的推论和证明</h1>
+        <h1 class="title">洛谷 P3554 [POI2013]LUK-Triumphal arch</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-06-22T16:00:00.000Z" itemprop="datePublished" class="page-time">
-  2019-06-23
+                <time datetime="2019-10-29T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-10-30
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
 
             
         </h5>
@@ -223,29 +223,29 @@
 
 
 <div class="container body-wrap">
-    <article id="post-olfm"
+    <article id="post-p3554"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">欧拉定理以及费马小定理的推论和证明</h1>
+        <h1 class="post-card-title">洛谷 P3554 [POI2013]LUK-Triumphal arch</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-06-23 00:00:00" datetime="2019-06-22T16:00:00.000Z"  itemprop="datePublished">2019-06-23</time>
+            <time class="post-time" title="2019-10-30 00:00:00" datetime="2019-10-29T16:00:00.000Z"  itemprop="datePublished">2019-10-30</time>
 
             
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
 
 
-
-            
 
             
 
+            
 
-<span class="post-comments-counter" id="/2019/06/23/olfm/">
+
+<span class="post-comments-counter" id="/2019/10/30/p3554/">
     <span class="post-meta-item-icon">
         <i class="icon icon-comment-o"></i>
     </span>
     
-    <a href="/2019/06/23/olfm/#gitment-display-button" onclick="ShowGitment()">
+    <a href="/2019/10/30/p3554/#gitment-display-button" onclick="ShowGitment()">
         <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
     </a>
 </span>
@@ -254,55 +254,19 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>今天连续对着三篇博客终于懂了<strong>欧拉定理</strong>和<strong>费马小定理</strong>的推论和证明，及时复习以免忘记。</p>
+            <p>给一颗树，1号节点已经被染黑，其余是白的，两个人轮流操作，一开始B在1号节点，A选择k个点染黑，然后B走一步，如果B能走到A没染的节点则B胜，否则当A染完全部的点时，A胜。求能让A获胜的最小的k</p>
 <a id="more"></a>
-<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><p>内容：若正整数$a,n$互质，那么$a^{\varphi(n)} \equiv 1(mod n)$</p>
-<p>证明：我们知道1~n中和$n$互质的数有${\varphi(n)}$个，为$x_{1},x_{2},x_{3}……x_{\varphi(n)}$，那么就可以设一个集合$M$，其元素为</p>
-<p>$m_{1}=a\times x_{1}$</p>
-<p>$m_{2}=a\times x_{2}$</p>
-<p>$m_{3}=a\times x_{3}$</p>
-<p>$……$</p>
-<p>$m_{\varphi(n)}=a\times x_{\varphi(n)}$</p>
-<p>那么得到两条性质</p>
-<p><strong>性质一</strong>：集合$M$中的任意两个元素都不模$n$同余</p>
-<p>证明：反证法。</p>
-<p>假设$M$中有两个元素$m_{i},m_{j}$模$n$同余</p>
-<p>所以$m_{i}\equiv m_{j}(mod n)$</p>
-<p>替换得$a\times x_{i}\equiv a\times x_{j}(mod n)$</p>
-<p>根据同余的同加性得到$a\times (x_{i}-x_{j})\equiv 0(mod n)$</p>
-<p>因为$a$和$n$互质，所以$x_{i}-x{j}$是$n$的倍数</p>
-<p>而每个$x_{i}$和$x_{j}$都比$n$小，所以上述结论不成立，原结论成立。</p>
-<p>证毕</p>
-<p><strong>性质二</strong>：集合$M$中的数除以$n$的余数都与$n$互质</p>
-<p>证明：首先$m_{i}=a\times x_{i}$，其中$x_{i},a$都与与$n$互质，那么$m_{i}$与$n$互质</p>
-<p>由互质得$gcd(m_{i},n)=1$</p>
-<p>由欧几里得定理得$gcd(m_{i},n)=gcd(n,m_{i} mod n)=1$</p>
-<p>证毕</p>
-<p>然后就可以化式子了</p>
-<p>由<strong>性质二</strong>我们知道集合$M$中所有元素模$n$都能找到唯一一个$x_{i}$与其对应，即对于每个$m_{i}$都有一个$x_{j}$和它模$n$同余</p>
-<p>那么把它们乘起来得到</p>
-<p>$m_{1}\times m_{2}\times m_{3}……m_{\varphi (n)}\equiv x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}(mod n)$</p>
-<p>带入</p>
-<p>$a\times x_{1}\times a\times x_{2}\times a\times x_{3}……a\times x_{\varphi (n)}\equiv x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}(mod n)$</p>
-<p>化简</p>
-<p>$a^{\varphi(n)}\times x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}\equiv x_{1}\times x_{2}\times x_{3}……x_{\varphi (n)}(mod n)$</p>
-<p>根据同余的同乘性得</p>
-<p>$a^{\varphi(n)} \equiv 1(mod n)$</p>
-<p>证毕</p>
-<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p>内容：若$p$是质数，则对于任意正整数$a$，有$a^p\equiv a(mod p)$</p>
-<p>证明：根据欧拉函数的性质可得$\varphi(p)=p-1$</p>
-<p>则$a^{\varphi(p)+1}\equiv a(mod p)$</p>
-<p>由欧拉定理可得$a^{\varphi(p)}\equiv 1(mod p)$成立</p>
-<p>故原式成立</p>
-<p>证毕</p>
-<h3 id="欧拉定理的推论"><a href="#欧拉定理的推论" class="headerlink" title="欧拉定理的推论"></a>欧拉定理的推论</h3><p>内容：若正整数$a,n$互质，则对于任意正整数$b$，都有$a^b\equiv a^{b mod \varphi(n)}(mod n)$</p>
-<p>证明：移项得$a^{b-b mod \varphi(n)}\equiv 1(mod n)$</p>
-<p>因为$\varphi(n)|b-b mod \varphi(n)$，所以可设$b-b mod \varphi(n)=k\times \varphi(n)$</p>
-<p>式子变为$a^{k\times \varphi(n)}\equiv 1(mod n)$</p>
-<p>$(a^{k})^{\varphi(n)}\equiv 1(mod n)$</p>
-<p>由于$a,n$互质，那么$a^{k},n$也互质</p>
-<p>再根据<strong>欧拉定理</strong>，原式成立</p>
-<p>证毕</p>
+<p>首先我们直接二分</p>
+<p>然后考虑怎么验证答案</p>
+<p>对于B而言，一定是只能从根往叶子节点走的，因为如果回到父亲就相当于白走了一次，从而多让A染了色</p>
+<p>而对于A来说，首先要染的一定是B当前所在的点的所有儿子节点</p>
+<p>于是我们可以设$f_u$表示以u为根的子树中，u点不染色会多出来几个点没被染色</p>
+<p>这个没被染色的意思是在B在u点时，B胜后u这棵树有多少个点没被染色，或者B是输的</p>
+<p>理解了状态就能写出转移方程了</p>
+<script type="math/tex; mode=display">f_u=max(0,\sum_{v\in son(u)}f_v\ +\ to_u-x)</script><p>其中x是二分的答案，$to_u$是u的儿子数</p>
+<p>简单来说就是这棵子树中如果有没染的节点也就是$f_v$，那么这次就要染上。0表示B是输的。这样就比较好理解了QAQ</p>
+<p>当然，在二分的时候，我们还可以确定出一个下界也就是$to_1$</p>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">3e5</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans,f[N + <span class="number">5</span>],to[N + <span class="number">5</span>];</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; d[N + <span class="number">5</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa,<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (it = d[u].begin();it != d[u].end();it++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> v = (*it);</span><br><span class="line">        <span class="keyword">if</span> (v == fa)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        dfs(v,u,x);</span><br><span class="line">        sum += f[v];</span><br><span class="line">    &#125;</span><br><span class="line">    f[u] = max(<span class="number">0</span>,to[u] + sum - x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    dfs(<span class="number">1</span>,<span class="number">0</span>,x);</span><br><span class="line">    <span class="keyword">return</span> f[<span class="number">1</span>] == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">int</span> u,v;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= n;i++)</span><br><span class="line">        to[i] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">        d[u].push_back(v);</span><br><span class="line">        d[v].push_back(u);</span><br><span class="line">        to[u]++;</span><br><span class="line">        to[v]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">    <span class="keyword">int</span> l = to[<span class="number">1</span>],r = n,mid;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid))</span><br><span class="line">            r = mid - <span class="number">1</span>,ans = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
         </div>
         
@@ -310,12 +274,12 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-09-08T11:20:27.333Z" itemprop="dateUpdated">2019-09-08 19:20:27</time>
+    Last updated: <time datetime="2019-10-30T06:32:08.885Z" itemprop="dateUpdated">2019-10-30 14:32:08</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2019/06/23/olfm/" target="_blank" rel="external">https://sdlang.ml/2019/06/23/olfm/</a>
+        转载注明出处，原文地址：<a href="/2019/10/30/p3554/" target="_blank" rel="external">https://sdlang.ml/2019/10/30/p3554/</a>
         
     </div>
     <footer>
@@ -329,7 +293,7 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分答案/">二分答案</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树上dp/">树上dp</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -338,7 +302,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/10/30/p3554/&title=《洛谷 P3554 [POI2013]LUK-Triumphal arch》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -350,7 +314,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&source=今天连续对着三篇博客终于懂了欧拉定理和费马小定理的推论和证明，及时复习以免忘记。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/10/30/p3554/&title=《洛谷 P3554 [POI2013]LUK-Triumphal arch》 — 咸鱼小屋&source=给一颗树，1号节点已经被染黑，其余是白的，两个人轮流操作，一开始B在1号节点，A选择k个点染黑，然后B走一步，如果B能走到A没染的节点则B胜，否则当A染完..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -381,21 +345,14 @@
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="prev">
-      <a href="/2019/06/24/p3846/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">洛谷 P3846 [TJOI2007]可爱的质数</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="next">
-      <a href="/2019/06/23/p3868/" id="post-next" class="post-nav-link">
+      <a href="/2019/10/28/p3047/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">洛谷 P3868 [TJOI2009]猜数字</h4>
+        <h4 class="title">USACO17DEC Barn Painting</h4>
       </a>
     </div>
   
@@ -403,14 +360,6 @@
 
 
     
-    
-        <aside class="post-widget">
-            <nav class="post-toc-wrap" id="post-toc">
-                <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧拉定理"><span class="post-toc-number">1.</span> <span class="post-toc-text">欧拉定理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#费马小定理"><span class="post-toc-number">2.</span> <span class="post-toc-text">费马小定理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#欧拉定理的推论"><span class="post-toc-number">3.</span> <span class="post-toc-text">欧拉定理的推论</span></a></li></ol>
-            </nav>
-            <div class="toc-bar"><div>
-        </aside>
     
 </article>
 
@@ -459,7 +408,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/10/30/p3554/&title=《洛谷 P3554 [POI2013]LUK-Triumphal arch》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -471,7 +420,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/06/23/olfm/&title=《欧拉定理以及费马小定理的推论和证明》 — 咸鱼小屋&source=今天连续对着三篇博客终于懂了欧拉定理和费马小定理的推论和证明，及时复习以免忘记。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/10/30/p3554/&title=《洛谷 P3554 [POI2013]LUK-Triumphal arch》 — 咸鱼小屋&source=给一颗树，1号节点已经被染黑，其余是白的，两个人轮流操作，一开始B在1号节点，A选择k个点染黑，然后B走一步，如果B能走到A没染的节点则B胜，否则当A染完..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -483,7 +432,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3aS47CMBAFwNz/0pkDoJjX7c8AKq8Qwk6ZxZPT7euKx/0wklnj1a4dAxcXd5p7D8fTA3r01xVyAy4u7nnuOIby0MkRyfq4uLjfwn39/VPojDeJi4v7e9z8uJMfmHBxcT+Nmx9B7tbI/4Jl72q4uLgT3N4rzdrPW+q7uLi4LW4vjOa31IxCXFzcI9w8UJIWS7LJapDh4uJ+JjcplfY2WZ2Fi4t7kjsfMb3fJ9e2ov8YFxd3Kbe3v2rDddxESSISFxf3f7m9xmfSRs1LJI8r4+LiHuTmVyt6BdDoUkVyeMLFxT3CrV7MSuKmemzKZ+Hi4p7nVi9JJAea3gHoTYEVFxd3MzePqupjquWP8rsaLi7uNm7vCJI3TpKgbPZPcXFxN3Nz4gx6TCm0XnBxcY9zZx45s7HCCri4uAe5PWhCv4rjzSxcXNzN3Ls4eu2W6vdRwuHi4m7jrjp29AooecOmvBlcXNxpbrVIOnOFohpw5fTFxcVdys2DprqN6uvQm1m4uLhfxc3TphqFW4IMFxd3A7f6sJnCx4Igw8XFbXGr1y/ygkheNIniEhcX9wh3pvHZu+jZK6ng4uIe4f4BmWviMfJZ2tYAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvUlEQVR42u3aza7CIBAGUN//pXu3JjfUbxigmhxWxoo9bCbzw+sVr2uw3p/e7/r/y9GuBQsXF7fNvW5X8pp8V/J09G+4uLjnuaOIkYeqDiUx4OLifj83CjpBloKLi/vr3Gq5ch+2cHFxv5+bpCD3iUsSBI/Wari4uA1uHpL2fd7S38XFxZ3iXsU1NyC5Fi1cXNwz3E5Dszo4qY5jh7twcXE3c9c2LKqU/Ei4uLgnudUfJe2PTjOlMKTBxcU9zk2aoXPl0FwKhYuLe5JbHYH0r1nk3w8bIri4uJu51WsT0fWIRU2QwqAFFxd3KTe/9NCf5RaGJSM6Li7uo9xO3KgmK4V2LS4u7hFungHNtTbyAUyhTMLFxX2IWx2y5qGwfDckqY1wcXE3cBNif1xabbt8CK+4uLibuZ3xSXWwWm2nfpj/4OLiPsStJjFz7dRyRoaLi7uNexVX9ZBzpdHwKS4u7hHu3Ii0M9eoDm5xcXGf4ibBKz9lPjSdfBcuLu5B7tyLk9Snc5ELFxf3t7j9QigvgXBxcX+LW01oFrRQcXFxD3JXFT9JkVMNfBtrNVxc3EY8yQNW/wDL+ru4uLgz3D90NVLBrD2qTAAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
