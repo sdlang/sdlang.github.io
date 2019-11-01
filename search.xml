@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[洛谷 P3586 [POI2015]LOG]]></title>
+    <url>%2F2019%2F11%2F01%2Fp3586%2F</url>
+    <content type="text"><![CDATA[维护一个长度为n的序列，一开始都是0，支持以下两种操作：1.U k a 将序列中第k个数修改为a。2.Z c s 在这个序列上，每次选出c个正数，并将它们都减去1，询问能否进行s次操作。每次询问独立，即每次询问不会对序列进行修改。 这个题看起来很nb的样子 首先我们可以把询问转化一下 既然要进行s次，那么那些大于等于s是一定要选的，假设这些数有cnt个 再考虑比s小的，假设这些数的和为sum，有x个 那么我们要满足$sum\ge (c-cnt)\times s$这个条件 看起来很正确但又感觉少了点什么QAQ，我们来证明一下 因为和已经满足条件了，那么我们只需要知道每次选的数是不是能有c个就可以，也就是$x\ge c-cnt$ 考虑c最少的情况，也就是$sum=\sum s-1$ 那么$x=\frac{sum}{s-1}$，所以$\frac{sum}{s-1}\ge c-cnt$ 移项得到$sum\ge (c-cnt)\times (s-1)$ 而根据原式$sum\ge (c-cnt)\times s$，上面这个结论就已经成立啦QAQ 所以我们只需要维护比一个数大的数有多少个，比一个数小的数的值的和就可以了 对于这个题而言，我们可以选择离散化+树状数组 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#define LL long longconst int N = 1e6;using namespace std;struct node&#123; int opt,c,s;&#125;q[N + 5];int n,m,a[N + 5],data[N + 5],c[N + 5],mp[N + 5],na[N + 5];LL s[N + 5];char ch;int lowbit(int x)&#123; return x &amp; (-x);&#125;void addc(int k,int x)&#123; if (k == 0) return; for (;k &lt;= m;k += lowbit(k)) c[k] += x;&#125;void adds(int k,int x)&#123; if (k == 0) return; for (;k &lt;= m;k += lowbit(k)) s[k] += x;&#125;int queryc(int k)&#123; int ans = 0; for (;k;k -= lowbit(k)) ans += c[k]; return ans;&#125;LL querys(int k)&#123; LL ans = 0; for (;k;k -= lowbit(k)) ans += s[k]; return ans;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for (int i = 1;i &lt;= m;i++) &#123; cin&gt;&gt;ch; scanf("%d%d",&amp;q[i].c,&amp;q[i].s); data[i] = q[i].s; if (ch == 'U') q[i].opt = 1; else q[i].opt = 2; &#125; sort(data + 1,data + m + 1); for (int i = 1;i &lt;= m;i++) mp[i] = lower_bound(data + 1,data + m + 1,q[i].s) - data,na[mp[i]] = q[i].s; for (int i = 1;i &lt;= m;i++) &#123; if (q[i].opt == 1) &#123; addc(a[q[i].c],-1); adds(a[q[i].c],-na[a[q[i].c]]); a[q[i].c] = mp[i]; addc(a[q[i].c],1); adds(a[q[i].c],q[i].s); &#125; else &#123; int cnt = queryc(m) - queryc(mp[i] - 1); if (querys(mp[i] - 1) &gt;= 1ll * q[i].s * (q[i].c - cnt)) printf("TAK\n"); else printf("NIE\n"); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>树状数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷 P3554 [POI2013]LUK-Triumphal arch]]></title>
     <url>%2F2019%2F10%2F30%2Fp3554%2F</url>
     <content type="text"><![CDATA[给一颗树，1号节点已经被染黑，其余是白的，两个人轮流操作，一开始B在1号节点，A选择k个点染黑，然后B走一步，如果B能走到A没染的节点则B胜，否则当A染完全部的点时，A胜。求能让A获胜的最小的k 首先我们直接二分 然后考虑怎么验证答案 对于B而言，一定是只能从根往叶子节点走的，因为如果回到父亲就相当于白走了一次，从而多让A染了色 而对于A来说，首先要染的一定是B当前所在的点的所有儿子节点 于是我们可以设$f_u$表示以u为根的子树中，u点不染色会多出来几个点没被染色 这个没被染色的意思是在B在u点时，B胜后u这棵树有多少个点没被染色，或者B是输的 理解了状态就能写出转移方程了 f_u=max(0,\sum_{v\in son(u)}f_v\ +\ to_u-x)其中x是二分的答案，$to_u$是u的儿子数 简单来说就是这棵子树中如果有没染的节点也就是$f_v$，那么这次就要染上。0表示B是输的。这样就比较好理解了QAQ 当然，在二分的时候，我们还可以确定出一个下界也就是$to_1$ Code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;vector&gt;const int N = 3e5;using namespace std;int n,ans,f[N + 5],to[N + 5];vector &lt;int&gt; d[N + 5];void dfs(int u,int fa,int x)&#123; vector &lt;int&gt;::iterator it; int sum = 0; for (it = d[u].begin();it != d[u].end();it++) &#123; int v = (*it); if (v == fa) continue; dfs(v,u,x); sum += f[v]; &#125; f[u] = max(0,to[u] + sum - x);&#125;int check(int x)&#123; dfs(1,0,x); return f[1] == 0;&#125;int main()&#123; scanf("%d",&amp;n); int u,v; for (int i = 2;i &lt;= n;i++) to[i] = -1; for (int i = 1;i &lt; n;i++) &#123; scanf("%d%d",&amp;u,&amp;v); d[u].push_back(v); d[v].push_back(u); to[u]++; to[v]++; &#125; vector &lt;int&gt;::iterator it; int l = to[1],r = n,mid; while (l &lt;= r) &#123; mid = l + r &gt;&gt; 1; if (check(mid)) r = mid - 1,ans = mid; else l = mid + 1; &#125; cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
@@ -8,8 +19,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树上dp</tag>
         <tag>二分答案</tag>
+        <tag>树上dp</tag>
       </tags>
   </entry>
   <entry>
@@ -42,8 +53,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>二分答案</tag>
         <tag>倍增</tag>
+        <tag>二分答案</tag>
         <tag>贪心</tag>
       </tags>
   </entry>
@@ -132,8 +143,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树上dp</tag>
         <tag>倍增</tag>
+        <tag>树上dp</tag>
         <tag>动态dp</tag>
       </tags>
   </entry>
@@ -326,8 +337,8 @@
       </categories>
       <tags>
         <tag>分块</tag>
-        <tag>树套树</tag>
         <tag>树状数组</tag>
+        <tag>树套树</tag>
       </tags>
   </entry>
   <entry>
