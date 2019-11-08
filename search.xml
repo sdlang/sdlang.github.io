@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[洛谷 P3586 [POI2015]LOG]]></title>
-    <url>%2F2019%2F11%2F01%2Fp3586%2F</url>
-    <content type="text"><![CDATA[维护一个长度为n的序列，一开始都是0，支持以下两种操作：1.U k a 将序列中第k个数修改为a。2.Z c s 在这个序列上，每次选出c个正数，并将它们都减去1，询问能否进行s次操作。每次询问独立，即每次询问不会对序列进行修改。 这个题看起来很nb的样子 首先我们可以把询问转化一下 既然要进行s次，那么那些大于等于s是一定要选的，假设这些数有cnt个 再考虑比s小的，假设这些数的和为sum，有x个 那么我们要满足$sum\ge (c-cnt)\times s$这个条件 看起来很正确但又感觉少了点什么QAQ，我们来证明一下 因为和已经满足条件了，那么我们只需要知道每次选的数是不是能有c个就可以，也就是$x\ge c-cnt$ 考虑c最少的情况，也就是$sum=\sum s-1$ 那么$x=\frac{sum}{s-1}$，所以$\frac{sum}{s-1}\ge c-cnt$ 移项得到$sum\ge (c-cnt)\times (s-1)$ 而根据原式$sum\ge (c-cnt)\times s$，上面这个结论就已经成立啦QAQ 所以我们只需要维护比一个数大的数有多少个，比一个数小的数的值的和就可以了 对于这个题而言，我们可以选择离散化+树状数组 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#define LL long longconst int N = 1e6;using namespace std;struct node&#123; int opt,c,s;&#125;q[N + 5];int n,m,a[N + 5],data[N + 5],c[N + 5],mp[N + 5],na[N + 5];LL s[N + 5];char ch;int lowbit(int x)&#123; return x &amp; (-x);&#125;void addc(int k,int x)&#123; if (k == 0) return; for (;k &lt;= m;k += lowbit(k)) c[k] += x;&#125;void adds(int k,int x)&#123; if (k == 0) return; for (;k &lt;= m;k += lowbit(k)) s[k] += x;&#125;int queryc(int k)&#123; int ans = 0; for (;k;k -= lowbit(k)) ans += c[k]; return ans;&#125;LL querys(int k)&#123; LL ans = 0; for (;k;k -= lowbit(k)) ans += s[k]; return ans;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for (int i = 1;i &lt;= m;i++) &#123; cin&gt;&gt;ch; scanf("%d%d",&amp;q[i].c,&amp;q[i].s); data[i] = q[i].s; if (ch == 'U') q[i].opt = 1; else q[i].opt = 2; &#125; sort(data + 1,data + m + 1); for (int i = 1;i &lt;= m;i++) mp[i] = lower_bound(data + 1,data + m + 1,q[i].s) - data,na[mp[i]] = q[i].s; for (int i = 1;i &lt;= m;i++) &#123; if (q[i].opt == 1) &#123; addc(a[q[i].c],-1); adds(a[q[i].c],-na[a[q[i].c]]); a[q[i].c] = mp[i]; addc(a[q[i].c],1); adds(a[q[i].c],q[i].s); &#125; else &#123; int cnt = queryc(m) - queryc(mp[i] - 1); if (querys(mp[i] - 1) &gt;= 1ll * q[i].s * (q[i].c - cnt)) printf("TAK\n"); else printf("NIE\n"); &#125; &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>树状数组</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[P2473 [SCOI2008]奖励关]]></title>
     <url>%2F2019%2F11%2F01%2Fp2473%2F</url>
     <content type="text"><![CDATA[你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选择，且现在决定不吃的宝物以后也不能再吃）。 宝物一共有n种，系统每次抛出这n种宝物的概率都相同且相互独立。也就是说，即使前k-1 次系统都抛出宝物1（这种情况是有可能出现的，尽管概率非常小），第k次抛出各个宝物的概率依然均为1/n。 获取第 i 种宝物将得到Pi分，但并不是每种宝物都是可以随意获取的。第i种宝物有一个前提宝物集合Si。只有当Si中所有宝物都至少吃过一次，才能吃第i 种宝物（如果系统抛出了一个目前不能吃的宝物，相当于白白的损失了一次机会）。注意，Pi 可以是负数，但如果它是很多高分宝物的前提，损失短期利益而吃掉这个负分宝物将获得更大的长期利益。 假设你采取最优策略，平均情况你一共能在奖励关得到多少分值？ 因为n很小，所以我们可以想到状压，于是设$f_{i,s}$表示到了第i轮并且现在选的物品是集合s时的最大期望 但是因为吃物品有先决条件，所以要多计算很多的概率 所以我们考虑倒推，这样子$f_{i,s}$变成了前i-1轮选的物品集合是s，那么i~k轮的最大期望 这个东西看起来是非常好转移的，转移方程就为 如果这个物品j可以吃，也就是$s\&amp;pr_j=pr_j$，那么可以吃或者不吃，就有$f_{i,s}+=max(f_{i+1,s},f_{i+1,s|(1&lt;&lt;j-1)}+p_j)$ p是分数 如果不能吃，那么久只能$f_{i,s}+=f_{i+1,s}$ 复杂度$O(k2^nn)$ Code1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;const int N = 15;const int K = 100;using namespace std;int n,k,p[N + 5],pr[N + 5];double f[K + 5][1 &lt;&lt; N + 1];int main()&#123; scanf(&quot;%d%d&quot;,&amp;k,&amp;n); int x; for (int i = 1;i &lt;= n;i++) &#123; scanf(&quot;%d&quot;,&amp;p[i]); scanf(&quot;%d&quot;,&amp;x); while (x != 0) &#123; pr[i] |= 1 &lt;&lt; x - 1; scanf(&quot;%d&quot;,&amp;x); &#125; &#125; for (int i = k;i &gt;= 1;i--) for (int s = 0;s &lt; (1 &lt;&lt; n);s++) &#123; for (int j = 1;j &lt;= n;j++) if ((s &amp; pr[j]) == pr[j]) f[i][s] += max(f[i + 1][s],f[i + 1][s | (1 &lt;&lt; j - 1)] + 1.0 * p[j]) / n; else f[i][s] += f[i + 1][s] / n; &#125; printf(&quot;%.6lf&quot;,f[1][0]); return 0;&#125;]]></content>
@@ -21,6 +10,17 @@
       <tags>
         <tag>状压dp</tag>
         <tag>期望</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷 P3586 [POI2015]LOG]]></title>
+    <url>%2F2019%2F11%2F01%2Fp3586%2F</url>
+    <content type="text"><![CDATA[维护一个长度为n的序列，一开始都是0，支持以下两种操作：1.U k a 将序列中第k个数修改为a。2.Z c s 在这个序列上，每次选出c个正数，并将它们都减去1，询问能否进行s次操作。每次询问独立，即每次询问不会对序列进行修改。 这个题看起来很nb的样子 首先我们可以把询问转化一下 既然要进行s次，那么那些大于等于s是一定要选的，假设这些数有cnt个 再考虑比s小的，假设这些数的和为sum，有x个 那么我们要满足$sum\ge (c-cnt)\times s$这个条件 看起来很正确但又感觉少了点什么QAQ，我们来证明一下 因为和已经满足条件了，那么我们只需要知道每次选的数是不是能有c个就可以，也就是$x\ge c-cnt$ 考虑c最少的情况，也就是$sum=\sum s-1$ 那么$x=\frac{sum}{s-1}$，所以$\frac{sum}{s-1}\ge c-cnt$ 移项得到$sum\ge (c-cnt)\times (s-1)$ 而根据原式$sum\ge (c-cnt)\times s$，上面这个结论就已经成立啦QAQ 所以我们只需要维护比一个数大的数有多少个，比一个数小的数的值的和就可以了 对于这个题而言，我们可以选择离散化+树状数组 Code1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#define LL long longconst int N = 1e6;using namespace std;struct node&#123; int opt,c,s;&#125;q[N + 5];int n,m,a[N + 5],data[N + 5],c[N + 5],mp[N + 5],na[N + 5];LL s[N + 5];char ch;int lowbit(int x)&#123; return x &amp; (-x);&#125;void addc(int k,int x)&#123; if (k == 0) return; for (;k &lt;= m;k += lowbit(k)) c[k] += x;&#125;void adds(int k,int x)&#123; if (k == 0) return; for (;k &lt;= m;k += lowbit(k)) s[k] += x;&#125;int queryc(int k)&#123; int ans = 0; for (;k;k -= lowbit(k)) ans += c[k]; return ans;&#125;LL querys(int k)&#123; LL ans = 0; for (;k;k -= lowbit(k)) ans += s[k]; return ans;&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for (int i = 1;i &lt;= m;i++) &#123; cin&gt;&gt;ch; scanf("%d%d",&amp;q[i].c,&amp;q[i].s); data[i] = q[i].s; if (ch == 'U') q[i].opt = 1; else q[i].opt = 2; &#125; sort(data + 1,data + m + 1); for (int i = 1;i &lt;= m;i++) mp[i] = lower_bound(data + 1,data + m + 1,q[i].s) - data,na[mp[i]] = q[i].s; for (int i = 1;i &lt;= m;i++) &#123; if (q[i].opt == 1) &#123; addc(a[q[i].c],-1); adds(a[q[i].c],-na[a[q[i].c]]); a[q[i].c] = mp[i]; addc(a[q[i].c],1); adds(a[q[i].c],q[i].s); &#125; else &#123; int cnt = queryc(m) - queryc(mp[i] - 1); if (querys(mp[i] - 1) &gt;= 1ll * q[i].s * (q[i].c - cnt)) printf("TAK\n"); else printf("NIE\n"); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>树状数组</tag>
       </tags>
   </entry>
   <entry>
@@ -349,8 +349,8 @@
       </categories>
       <tags>
         <tag>分块</tag>
-        <tag>树状数组</tag>
         <tag>树套树</tag>
+        <tag>树状数组</tag>
       </tags>
   </entry>
   <entry>
