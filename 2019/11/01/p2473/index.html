@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2019/11/01/p2473/">
+    
+    
+    <title>P2473 [SCOI2008]奖励关 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="状压dp,期望">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>P2473 [SCOI2008]奖励关</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">P2473 [SCOI2008]奖励关</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-31T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-11-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-p2473"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">P2473 [SCOI2008]奖励关</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-01 00:00:00" datetime="2019-10-31T16:00:00.000Z"  itemprop="datePublished">2019-11-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/题解/">题解</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2019/11/01/p2473/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2019/11/01/p2473/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选择，且现在决定不吃的宝物以后也不能再吃）。</p>
+<p>宝物一共有n种，系统每次抛出这n种宝物的概率都相同且相互独立。也就是说，即使前k-1 次系统都抛出宝物1（这种情况是有可能出现的，尽管概率非常小），第k次抛出各个宝物的概率依然均为1/n。</p>
+<p>获取第 i 种宝物将得到Pi分，但并不是每种宝物都是可以随意获取的。第i种宝物有一个前提宝物集合Si。只有当Si中所有宝物都至少吃过一次，才能吃第i 种宝物（如果系统抛出了一个目前不能吃的宝物，相当于白白的损失了一次机会）。注意，Pi 可以是负数，但如果它是很多高分宝物的前提，损失短期利益而吃掉这个负分宝物将获得更大的长期利益。</p>
+<p>假设你采取最优策略，平均情况你一共能在奖励关得到多少分值？</p>
+<a id="more"></a>
+<p>因为n很小，所以我们可以想到状压，于是设$f_{i,s}$表示到了第i轮并且现在选的物品是集合s时的最大期望</p>
+<p>但是因为吃物品有先决条件，所以要多计算很多的概率</p>
+<p>所以我们考虑倒推，这样子$f_{i,s}$变成了前i-1轮选的物品集合是s，那么i~k轮的最大期望</p>
+<p>这个东西看起来是非常好转移的，转移方程就为</p>
+<p>如果这个物品j可以吃，也就是$s\&amp;pr_j=pr_j$，那么可以吃或者不吃，就有$f_{i,s}+=max(f_{i+1,s},f_{i+1,s|(1&lt;&lt;j-1)}+p_j)$</p>
+<p>p是分数</p>
+<p>如果不能吃，那么久只能$f_{i,s}+=f_{i+1,s}$</p>
+<p>复杂度$O(k2^nn)$</p>
+<p><strong>Code</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">const int N = 15;</span><br><span class="line">const int K = 100;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,k,p[N + 5],pr[N + 5];</span><br><span class="line">double f[K + 5][1 &lt;&lt; N + 1];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;k,&amp;n);</span><br><span class="line">    int x;</span><br><span class="line">    for (int i = 1;i &lt;= n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;p[i]);</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;x);</span><br><span class="line">        while (x != 0)</span><br><span class="line">        &#123;</span><br><span class="line">            pr[i] |= 1 &lt;&lt; x - 1;</span><br><span class="line">            scanf(&quot;%d&quot;,&amp;x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = k;i &gt;= 1;i--)</span><br><span class="line">        for (int s = 0;s &lt; (1 &lt;&lt; n);s++)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int j = 1;j &lt;= n;j++)</span><br><span class="line">                if ((s &amp; pr[j]) == pr[j])</span><br><span class="line">                    f[i][s] += max(f[i + 1][s],f[i + 1][s | (1 &lt;&lt; j - 1)] + 1.0 * p[j]) / n;</span><br><span class="line">                else</span><br><span class="line">                    f[i][s] += f[i + 1][s] / n;</span><br><span class="line">        &#125;</span><br><span class="line">    printf(&quot;%.6lf&quot;,f[1][0]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2019-11-08T23:42:02.974Z" itemprop="dateUpdated">2019-11-09 07:42:02</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/11/01/p2473/" target="_blank" rel="external">https://sdlang.ml/2019/11/01/p2473/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/期望/">期望</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/状压dp/">状压dp</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/11/01/p2473/&title=《P2473 [SCOI2008]奖励关》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/11/01/p2473/&title=《P2473 [SCOI2008]奖励关》 — 咸鱼小屋&source=你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/11/01/p3586/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">洛谷 P3586 [POI2015]LOG</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/10/30/p3554/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">洛谷 P3554 [POI2013]LUK-Triumphal arch</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2019/11/01/p2473/&title=《P2473 [SCOI2008]奖励关》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2019/11/01/p2473/&title=《P2473 [SCOI2008]奖励关》 — 咸鱼小屋&source=你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3aS27DMAwFwNz/0u62i1Z+pCwmAUarIDDkkRcEP3q94nX9Wvk/+W4PL1xc3G3utVw9bv58bsDFxZ3n/hcx1s8kz+efY70nLi7u53OveFWPh4uL+43cvODppTu4uLifw91JQXoB63ithouLu8HNu5Tnfh/p7+Li4ra4V3ElISxvpJbfjouLO8KtNkPzEmh9mJ334uLiznDzXCJvdvRKqfX+uLi489wk6FQvWCT7VD8WLi7uae6zIam3Q/6xcHFxZ7h5mZEPSqtjlV7zBRcX9zS31/Kotk2TCx9RGoSLi3uYW01fem2OXtLzx7FxcXHHub0Ll73UJwl/N7UaLi7uMW6SxKz/6YWzPP8qFz+4uLgPcfOwVX3xzpD15klcXNzD3LwI6bHy0UvUdsHFxR3kVu9rJP/kqU8hecLFxR3n9q5W5EPWnPuqZkC4uLgPca/iqrZR8n2iQ+Li4o5we2lHHryqBVV1B1xc3HPcXouzOoLNA9lNgMPFxR3kVgNNr+zZGcTi4uJ+Mjdvl+wMYssnxsXFfSt3/5BbLVRcXNxBbrVQ6ZUx1bQJFxf3Xdze4HOdviQBLr8QhouLO8j9ASMT90ZXYgDHAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

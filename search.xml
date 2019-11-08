@@ -12,6 +12,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[P2473 [SCOI2008]奖励关]]></title>
+    <url>%2F2019%2F11%2F01%2Fp2473%2F</url>
+    <content type="text"><![CDATA[你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选择，且现在决定不吃的宝物以后也不能再吃）。 宝物一共有n种，系统每次抛出这n种宝物的概率都相同且相互独立。也就是说，即使前k-1 次系统都抛出宝物1（这种情况是有可能出现的，尽管概率非常小），第k次抛出各个宝物的概率依然均为1/n。 获取第 i 种宝物将得到Pi分，但并不是每种宝物都是可以随意获取的。第i种宝物有一个前提宝物集合Si。只有当Si中所有宝物都至少吃过一次，才能吃第i 种宝物（如果系统抛出了一个目前不能吃的宝物，相当于白白的损失了一次机会）。注意，Pi 可以是负数，但如果它是很多高分宝物的前提，损失短期利益而吃掉这个负分宝物将获得更大的长期利益。 假设你采取最优策略，平均情况你一共能在奖励关得到多少分值？ 因为n很小，所以我们可以想到状压，于是设$f_{i,s}$表示到了第i轮并且现在选的物品是集合s时的最大期望 但是因为吃物品有先决条件，所以要多计算很多的概率 所以我们考虑倒推，这样子$f_{i,s}$变成了前i-1轮选的物品集合是s，那么i~k轮的最大期望 这个东西看起来是非常好转移的，转移方程就为 如果这个物品j可以吃，也就是$s\&amp;pr_j=pr_j$，那么可以吃或者不吃，就有$f_{i,s}+=max(f_{i+1,s},f_{i+1,s|(1&lt;&lt;j-1)}+p_j)$ p是分数 如果不能吃，那么久只能$f_{i,s}+=f_{i+1,s}$ 复杂度$O(k2^nn)$ Code1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;const int N = 15;const int K = 100;using namespace std;int n,k,p[N + 5],pr[N + 5];double f[K + 5][1 &lt;&lt; N + 1];int main()&#123; scanf(&quot;%d%d&quot;,&amp;k,&amp;n); int x; for (int i = 1;i &lt;= n;i++) &#123; scanf(&quot;%d&quot;,&amp;p[i]); scanf(&quot;%d&quot;,&amp;x); while (x != 0) &#123; pr[i] |= 1 &lt;&lt; x - 1; scanf(&quot;%d&quot;,&amp;x); &#125; &#125; for (int i = k;i &gt;= 1;i--) for (int s = 0;s &lt; (1 &lt;&lt; n);s++) &#123; for (int j = 1;j &lt;= n;j++) if ((s &amp; pr[j]) == pr[j]) f[i][s] += max(f[i + 1][s],f[i + 1][s | (1 &lt;&lt; j - 1)] + 1.0 * p[j]) / n; else f[i][s] += f[i + 1][s] / n; &#125; printf(&quot;%.6lf&quot;,f[1][0]); return 0;&#125;]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>状压dp</tag>
+        <tag>期望</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷 P3554 [POI2013]LUK-Triumphal arch]]></title>
     <url>%2F2019%2F10%2F30%2Fp3554%2F</url>
     <content type="text"><![CDATA[给一颗树，1号节点已经被染黑，其余是白的，两个人轮流操作，一开始B在1号节点，A选择k个点染黑，然后B走一步，如果B能走到A没染的节点则B胜，否则当A染完全部的点时，A胜。求能让A获胜的最小的k 首先我们直接二分 然后考虑怎么验证答案 对于B而言，一定是只能从根往叶子节点走的，因为如果回到父亲就相当于白走了一次，从而多让A染了色 而对于A来说，首先要染的一定是B当前所在的点的所有儿子节点 于是我们可以设$f_u$表示以u为根的子树中，u点不染色会多出来几个点没被染色 这个没被染色的意思是在B在u点时，B胜后u这棵树有多少个点没被染色，或者B是输的 理解了状态就能写出转移方程了 f_u=max(0,\sum_{v\in son(u)}f_v\ +\ to_u-x)其中x是二分的答案，$to_u$是u的儿子数 简单来说就是这棵子树中如果有没染的节点也就是$f_v$，那么这次就要染上。0表示B是输的。这样就比较好理解了QAQ 当然，在二分的时候，我们还可以确定出一个下界也就是$to_1$ Code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;#include &lt;vector&gt;const int N = 3e5;using namespace std;int n,ans,f[N + 5],to[N + 5];vector &lt;int&gt; d[N + 5];void dfs(int u,int fa,int x)&#123; vector &lt;int&gt;::iterator it; int sum = 0; for (it = d[u].begin();it != d[u].end();it++) &#123; int v = (*it); if (v == fa) continue; dfs(v,u,x); sum += f[v]; &#125; f[u] = max(0,to[u] + sum - x);&#125;int check(int x)&#123; dfs(1,0,x); return f[1] == 0;&#125;int main()&#123; scanf("%d",&amp;n); int u,v; for (int i = 2;i &lt;= n;i++) to[i] = -1; for (int i = 1;i &lt; n;i++) &#123; scanf("%d%d",&amp;u,&amp;v); d[u].push_back(v); d[v].push_back(u); to[u]++; to[v]++; &#125; vector &lt;int&gt;::iterator it; int l = to[1],r = n,mid; while (l &lt;= r) &#123; mid = l + r &gt;&gt; 1; if (check(mid)) r = mid - 1,ans = mid; else l = mid + 1; &#125; cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
