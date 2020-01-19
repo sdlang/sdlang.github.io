@@ -42,8 +42,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树上dp</tag>
         <tag>二分答案</tag>
+        <tag>树上dp</tag>
       </tags>
   </entry>
   <entry>
@@ -166,8 +166,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树上dp</tag>
         <tag>倍增</tag>
+        <tag>树上dp</tag>
         <tag>动态dp</tag>
       </tags>
   </entry>
@@ -265,8 +265,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>树链剖分</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -479,22 +479,9 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>组合数</tag>
         <tag>lucas</tag>
-        <tag>中国剩余定理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Catalan数]]></title>
-    <url>%2F2019%2F06%2F25%2FCatalan%2F</url>
-    <content type="text"><![CDATA[学了$Catalan$数，赶紧复习怕自己忘记 先丢个问题吧 问题：给$n$个$0$和$n$个$1$，它们按照某种顺序排成长度为$2n$的数列，对于每个前缀，$0$的数量都不少于$1$的数量的数列个数。 解：令这些数排成一个长度为$2n$的数列，且不满足每个前缀中$0$的数列不少于$1$的数量，那么必定存在一个最小的位置$2i+1∈[1,2n]$，使得这个前缀中有$i$个$0$，$i+1$个$1$，而对后面的数取反后，有$n-i-1$个$0$，$n-i$个$1$，于是我们得到了一个有$n-1$个$0$，$n+1$个$1$排成的数列。 同理，如果把有$n-1$个$0$，$n+1$个$1$排成的数列继续进行上述操作，就得到了有$n$个$0$，$n$个$1$排成的数列。 这便构成了一个双射： 由$n$个$0$和$n$个$1$排成的存在一个前缀中$1$比$0$多的数列。 由$n-1$个$0$和$n+1$个$1$排成的数列。 然后式子就出来了 Cat_n=C_{2n}^n-C_{2n}^{n-1}=\frac{(2n)!}{n!\times n!}-\frac{(2n)!}{(n-1)!\times(n+1)!}=\frac{1}{n+1}\times C_{2n}^n这就是卡特兰$(Catalan)$数了]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>卡特兰数</tag>
         <tag>组合数</tag>
+        <tag>中国剩余定理</tag>
       </tags>
   </entry>
   <entry>
@@ -506,8 +493,21 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>组合数</tag>
         <tag>lucas</tag>
+        <tag>组合数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Catalan数]]></title>
+    <url>%2F2019%2F06%2F25%2FCatalan%2F</url>
+    <content type="text"><![CDATA[学了$Catalan$数，赶紧复习怕自己忘记 先丢个问题吧 问题：给$n$个$0$和$n$个$1$，它们按照某种顺序排成长度为$2n$的数列，对于每个前缀，$0$的数量都不少于$1$的数量的数列个数。 解：令这些数排成一个长度为$2n$的数列，且不满足每个前缀中$0$的数列不少于$1$的数量，那么必定存在一个最小的位置$2i+1∈[1,2n]$，使得这个前缀中有$i$个$0$，$i+1$个$1$，而对后面的数取反后，有$n-i-1$个$0$，$n-i$个$1$，于是我们得到了一个有$n-1$个$0$，$n+1$个$1$排成的数列。 同理，如果把有$n-1$个$0$，$n+1$个$1$排成的数列继续进行上述操作，就得到了有$n$个$0$，$n$个$1$排成的数列。 这便构成了一个双射： 由$n$个$0$和$n$个$1$排成的存在一个前缀中$1$比$0$多的数列。 由$n-1$个$0$和$n+1$个$1$排成的数列。 然后式子就出来了 Cat_n=C_{2n}^n-C_{2n}^{n-1}=\frac{(2n)!}{n!\times n!}-\frac{(2n)!}{(n-1)!\times(n+1)!}=\frac{1}{n+1}\times C_{2n}^n这就是卡特兰$(Catalan)$数了]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>组合数</tag>
+        <tag>卡特兰数</tag>
       </tags>
   </entry>
   <entry>

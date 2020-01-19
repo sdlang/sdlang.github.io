@@ -259,8 +259,10 @@
 <p>好久没写博客了= =</p>
 <p>正好刚听学长讲了计算几何，就收录下一些相关操作吧</p>
 <h3 id="图形存储"><a href="#图形存储" class="headerlink" title="图形存储"></a>图形存储</h3><ol>
-<li>点：我们可以直接存储x,y坐标或x,y,z坐标</li>
-<li>向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示</li>
+<li><p>点：我们可以直接存储x,y坐标或x,y,z坐标</p>
+</li>
+<li><p>向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示</p>
+</li>
 </ol>
 <p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> //或<span class="title">Vector</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <ol>
@@ -284,9 +286,12 @@
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cross</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.x * b.y - a.y * b.x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
-<li>向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$</li>
-<li>直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$</li>
-<li>点到直线的距离：用等积法求高</li>
+<li><p>向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$</p>
+</li>
+<li><p>直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$</p>
+</li>
+<li><p>点到直线的距离：用等积法求高</p>
+</li>
 </ol>
 <p>先写这么多吧QAQ，有空以后补上</p>
 
@@ -296,7 +301,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-01-19T08:28:25.547Z" itemprop="dateUpdated">2020-01-19 16:28:25</time>
+    Last updated: <time datetime="2020-01-19T08:43:56.355Z" itemprop="dateUpdated">2020-01-19 16:43:56</time>
 </span><br>
 
 
