@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[计算几何]]></title>
     <url>%2F2020%2F01%2F19%2Fgeometry%2F</url>
-    <content type="text"><![CDATA[超级全的计算几何全家桶~ 好久没写博客了= = 正好刚听学长讲了计算几何，就收录下一些相关操作吧 图形存储 点：我们可以直接存储x,y坐标或x,y,z坐标 向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示 Code1234struct node //或Vector&#123; double x,y;&#125;; 直线：用两个点或一个点和一个向量的形式 基础计算后面的$\vec{a},\vec{b}$均为$\vec{a}=(x_1,y_1),\vec{b}=(x_2,y_2)$，直线$l_1,l_2$均为$p_1+t\vec{v_1},p_2+t\vec{v_2}$ 两点之间距离：$dist=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$ Code1234double dist(node a,node b)&#123; return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));&#125; 向量加、减、数乘、数除：x,y对应操作就行了 **Code12345678910111213141516node operator +(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x + b.x,a.y + b.y&#125;;&#125;node operator -(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x - b.x,a.y - b.y&#125;;&#125;node operator *(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x * b,a.y * b&#125;;&#125;node operator /(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x / b,a.y / b&#125;;&#125; 点乘：$dot(\vec{a},\vec{b})=x_1\cdot x_2+y_1\cdot y_2=|\vec{a}|\cdot|\vec{b}|\cdot \cos\left \langle\vec{a},\vec{b}\right \rangle$ Code1234double dot(node a,node b)&#123; return a.x * b.x + a.y * b.y;&#125; 叉积：$cross(\vec{a},\vec{b})=x_1\cdot y_2-x_2\cdot y_1=\cdot \sin\left \langle\vec{a},\vec{b}\right \rangle$ 1234double cross(node a,node b)&#123; return a.x * b.y - a.y * b.x;&#125; 向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$ 直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$ 点到直线的距离：用等积法求高 先写这么多吧QAQ，有空以后补上]]></content>
+    <content type="text"><![CDATA[超级全的计算几何全家桶~ 好久没写博客了= = 正好刚听学长讲了计算几何，就收录下一些相关操作吧 图形存储 点：我们可以直接存储x,y坐标或x,y,z坐标 向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示 Code1234struct node //或Vector&#123; double x,y;&#125;; 直线：用两个点或一个点和一个向量的形式 基础计算后面的$\vec{a},\vec{b}$均为$\vec{a}=(x_1,y_1),\vec{b}=(x_2,y_2)$，直线$l_1,l_2$均为$p_1+t\vec{v_1},p_2+t\vec{v_2}$ 两点之间距离：$dist=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$ Code1234double dist(node a,node b)&#123; return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));&#125; 向量加、减、数乘、数除：x,y对应操作就行了 Code12345678910111213141516node operator +(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x + b.x,a.y + b.y&#125;;&#125;node operator -(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x - b.x,a.y - b.y&#125;;&#125;node operator *(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x * b,a.y * b&#125;;&#125;node operator /(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x / b,a.y / b&#125;;&#125; 点乘：$dot(\vec{a},\vec{b})=x_1\cdot x_2+y_1\cdot y_2=|\vec{a}|\cdot|\vec{b}|\cdot \cos\left \langle\vec{a},\vec{b}\right \rangle$ Code1234double dot(node a,node b)&#123; return a.x * b.x + a.y * b.y;&#125; 叉积：$cross(\vec{a},\vec{b})=x_1\cdot y_2-x_2\cdot y_1=\cdot \sin\left \langle\vec{a},\vec{b}\right \rangle$ 1234double cross(node a,node b)&#123; return a.x * b.y - a.y * b.x;&#125; 向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$ 直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$ 点到直线的距离：用等积法求高 先写这么多吧QAQ，有空以后补上]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
@@ -42,8 +42,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>二分答案</tag>
         <tag>树上dp</tag>
+        <tag>二分答案</tag>
       </tags>
   </entry>
   <entry>
@@ -166,8 +166,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>倍增</tag>
         <tag>树上dp</tag>
+        <tag>倍增</tag>
         <tag>动态dp</tag>
       </tags>
   </entry>
@@ -479,22 +479,9 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>lucas</tag>
         <tag>组合数</tag>
+        <tag>lucas</tag>
         <tag>中国剩余定理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Lucas定理以及证明]]></title>
-    <url>%2F2019%2F06%2F25%2FLucas%2F</url>
-    <content type="text"><![CDATA[对着无数篇博客终于$yy$懂了$Lucas$定理，兴奋之际赶紧写下来 内容如果$p$是质数，那么$C_{n}^{m}\equiv C_{n\mod p}^{m\mod p}\times C_{n/p}^{m/p}(mod p)$ 证明首先我们要知道一个性质： 如果$p$为质数，那么有$C_{p}^{n}\equiv 0(mod p)$，其中$n\ne 0,p$ 这个很显然吧，考虑把组合数的式子写出来：$C_p^n=\frac{p!}{n!(p-n)!}$ 把$p$提出来就变成了$\frac{(p-1)!}{n!(p-n)!}\times p$，就证完了 这个性质有什么用呢？别着急，我们先往下走 由二项式定理得：$(x+1)^p=\sum _{i=0}^{p}C_p^i\times x^i$ 而根据上面的性质，因为$n$只有在等于$0$或$p$时才为$1$，其余时都为$0$得到在模$p$意义下 (x+1)^p\equiv x^p+1(mod\ p)设$n=\left \lfloor \frac{n}{p} \right \rfloor\times p+n mod p$ 那么可得$(x+1)^n\equiv (x+1)^{\left \lfloor \frac{n}{p} \right \rfloor\times p}+(x+1)^{n mod p}(mod p)$ 替换得$(x+1)^n\equiv (x^p+1)^{\left \lfloor \frac{n}{p} \right \rfloor}+(x+1)^{n mod p}(mod p)$ 根据二项式定理，展开得 \sum_{i=0}^{n}C_n^i\times x^i\equiv \sum_{j=0}^{\left \lfloor \frac{n}{p} \right \rfloor}C_{\left \lfloor \frac{n}{p} \right \rfloor}^j\times x^j+\sum_{k=0}^{n\ mod\ p}C_{n\ mod\ p}^{k}\times x^k(mod\ p)观察这个式子，我们发现对于每一个$i$，都一定存在$j,k$与其对应，保证$x^i=x^j\times x^k$，约掉之后就是$Lucas$了 证毕 代码很好写，丢下板子题代码QAQ12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;iostream&gt;#include &lt;cstdio&gt;#define int long longusing namespace std;int t,m,n,p;int mypow(int a,int x)&#123; int s=1; while (x) &#123; if (x&amp;1)s=s*a%p; a=a*a%p; x&gt;&gt;=1; &#125; return s;&#125;int C(int m,int n)&#123; if (m&gt;n)return 0; int a=1,b=1; for (int i=1;i&lt;=n;i++)a=a*i%p; for (int i=1;i&lt;=m;i++)b=b*i%p; for (int i=1;i&lt;=n-m;i++)b=b*i%p; return a*mypow(b,p-2)%p;&#125;int lucas(int m,int n)&#123; if (!m)return 1; return C(m%p,n%p)*lucas(m/p,n/p)%p;&#125;signed main()&#123; cin&gt;&gt;t; while (t--) &#123; cin&gt;&gt;n&gt;&gt;m&gt;&gt;p; cout&lt;&lt;lucas(m,m+n)&lt;&lt;endl; &#125; return 0;&#125; 扩展$Lucas$我会尽快学了补上的QAQ]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>lucas</tag>
-        <tag>组合数</tag>
       </tags>
   </entry>
   <entry>
@@ -506,8 +493,21 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>组合数</tag>
         <tag>卡特兰数</tag>
+        <tag>组合数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Lucas定理以及证明]]></title>
+    <url>%2F2019%2F06%2F25%2FLucas%2F</url>
+    <content type="text"><![CDATA[对着无数篇博客终于$yy$懂了$Lucas$定理，兴奋之际赶紧写下来 内容如果$p$是质数，那么$C_{n}^{m}\equiv C_{n\mod p}^{m\mod p}\times C_{n/p}^{m/p}(mod p)$ 证明首先我们要知道一个性质： 如果$p$为质数，那么有$C_{p}^{n}\equiv 0(mod p)$，其中$n\ne 0,p$ 这个很显然吧，考虑把组合数的式子写出来：$C_p^n=\frac{p!}{n!(p-n)!}$ 把$p$提出来就变成了$\frac{(p-1)!}{n!(p-n)!}\times p$，就证完了 这个性质有什么用呢？别着急，我们先往下走 由二项式定理得：$(x+1)^p=\sum _{i=0}^{p}C_p^i\times x^i$ 而根据上面的性质，因为$n$只有在等于$0$或$p$时才为$1$，其余时都为$0$得到在模$p$意义下 (x+1)^p\equiv x^p+1(mod\ p)设$n=\left \lfloor \frac{n}{p} \right \rfloor\times p+n mod p$ 那么可得$(x+1)^n\equiv (x+1)^{\left \lfloor \frac{n}{p} \right \rfloor\times p}+(x+1)^{n mod p}(mod p)$ 替换得$(x+1)^n\equiv (x^p+1)^{\left \lfloor \frac{n}{p} \right \rfloor}+(x+1)^{n mod p}(mod p)$ 根据二项式定理，展开得 \sum_{i=0}^{n}C_n^i\times x^i\equiv \sum_{j=0}^{\left \lfloor \frac{n}{p} \right \rfloor}C_{\left \lfloor \frac{n}{p} \right \rfloor}^j\times x^j+\sum_{k=0}^{n\ mod\ p}C_{n\ mod\ p}^{k}\times x^k(mod\ p)观察这个式子，我们发现对于每一个$i$，都一定存在$j,k$与其对应，保证$x^i=x^j\times x^k$，约掉之后就是$Lucas$了 证毕 代码很好写，丢下板子题代码QAQ12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;iostream&gt;#include &lt;cstdio&gt;#define int long longusing namespace std;int t,m,n,p;int mypow(int a,int x)&#123; int s=1; while (x) &#123; if (x&amp;1)s=s*a%p; a=a*a%p; x&gt;&gt;=1; &#125; return s;&#125;int C(int m,int n)&#123; if (m&gt;n)return 0; int a=1,b=1; for (int i=1;i&lt;=n;i++)a=a*i%p; for (int i=1;i&lt;=m;i++)b=b*i%p; for (int i=1;i&lt;=n-m;i++)b=b*i%p; return a*mypow(b,p-2)%p;&#125;int lucas(int m,int n)&#123; if (!m)return 1; return C(m%p,n%p)*lucas(m/p,n/p)%p;&#125;signed main()&#123; cin&gt;&gt;t; while (t--) &#123; cin&gt;&gt;n&gt;&gt;m&gt;&gt;p; cout&lt;&lt;lucas(m,m+n)&lt;&lt;endl; &#125; return 0;&#125; 扩展$Lucas$我会尽快学了补上的QAQ]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>组合数</tag>
+        <tag>lucas</tag>
       </tags>
   </entry>
   <entry>
