@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <link rel="canonical" href="true/2020/01/19/geometry/">
+    
+    
+    <title>计算几何 | 咸鱼小屋 | 乘上与平时相反的列车，为了去见从未见过的风景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="计算几何">
+    <link rel="shortcut icon" href="/img/QAQ.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+        <link rel="stylesheet" href="/css/third-party/gitment.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":"vXvETfQmWiJbGL9LKNDmDur3-gzGzoHsz","app_key":"7YJzhANXzK81NyBNb3x7DMqJ","icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":true,"lazy":true,"owner":"sdlang","repo":"gitment","oauth":{"client_id":"2c252a46ecd59a4ac6c3","client_secret":"b0a64660f2cfa2f9a032f2cd5b2c5242755ed8a0"},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">eee_hoho</h5>
+          <a href="mailto:1393581196@qq.com" title="1393581196@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>3</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>5</span>
+            
+              <span>8</span>
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/sdlang" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=73231" target="_blank">
+                  <i class="icon icon-lg icon-code"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:1393581196@qq.com" target="_blank">
+                  <i class="icon icon-lg icon-envelope"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://space.bilibili.com/88019768" target="_blank">
+                  <i class="icon icon-lg icon-tv"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                我的主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                各种分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                各种标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                所有文章
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/task"  >
+                <i class="icon icon-lg icon-tasks"></i>
+                近期任务
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>计算几何</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner2.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">计算几何</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2020-01-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-geometry"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">计算几何</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-01-19 00:00:00" datetime="2020-01-18T16:00:00.000Z"  itemprop="datePublished">2020-01-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+
+            
+
+
+<span class="post-comments-counter" id="/2020/01/19/geometry/">
+    <span class="post-meta-item-icon">
+        <i class="icon icon-comment-o"></i>
+    </span>
+    
+    <a href="/2020/01/19/geometry/#gitment-display-button" onclick="ShowGitment()">
+        <span class="post-comments-count gitment-comments-count" itemprop="commentsCount"></span>
+    </a>
+</span>
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>超级全的计算几何全家桶~</p>
+<a id="more"></a>
+<p>好久没写博客了= =</p>
+<p>正好刚听学长讲了计算几何，就收录下一些相关操作吧</p>
+<h3 id="图形存储"><a href="#图形存储" class="headerlink" title="图形存储"></a>图形存储</h3><ol>
+<li>点：我们可以直接存储x,y坐标或x,y,z坐标</li>
+<li>向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示</li>
+</ol>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> //或<span class="title">Vector</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>直线：用两个点或一个点和一个向量的形式</li>
+</ol>
+<h3 id="基础计算"><a href="#基础计算" class="headerlink" title="基础计算"></a>基础计算</h3><p>后面的$\vec{a},\vec{b}$均为$\vec{a}=(x_1,y_1),\vec{b}=(x_2,y_2)$，直线$l_1,l_2$均为$p_1+t\vec{v_1},p_2+t\vec{v_2}$</p>
+<ol>
+<li>两点之间距离：$dist=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$</li>
+</ol>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dist</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sqrt</span>((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>向量加、减、数乘、数除：x,y对应操作就行了</li>
+</ol>
+<p>**Code<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">node <span class="keyword">operator</span> +(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (node)&#123;a.x + b.x,a.y + b.y&#125;;</span><br><span class="line">&#125;</span><br><span class="line">node <span class="keyword">operator</span> -(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> node &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (node)&#123;a.x - b.x,a.y - b.y&#125;;</span><br><span class="line">&#125;</span><br><span class="line">node <span class="keyword">operator</span> *(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> <span class="keyword">double</span> &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (node)&#123;a.x * b,a.y * b&#125;;</span><br><span class="line">&#125;</span><br><span class="line">node <span class="keyword">operator</span> /(<span class="keyword">const</span> node &amp;a,<span class="keyword">const</span> <span class="keyword">double</span> &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (node)&#123;a.x / b,a.y / b&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>点乘：$dot(\vec{a},\vec{b})=x_1\cdot x_2+y_1\cdot y_2=|\vec{a}|\cdot|\vec{b}|\cdot \cos\left \langle\vec{a},\vec{b}\right \rangle$</li>
+</ol>
+<p><strong>Code</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dot</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.x * b.x + a.y * b.y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>叉积：$cross(\vec{a},\vec{b})=x_1\cdot y_2-x_2\cdot y_1=\cdot \sin\left \langle\vec{a},\vec{b}\right \rangle$</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cross</span><span class="params">(node a,node b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.x * b.y - a.y * b.x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$</li>
+<li>直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$</li>
+<li>点到直线的距离：用等积法求高</li>
+</ol>
+<p>先写这么多吧QAQ，有空以后补上</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-19T08:28:25.547Z" itemprop="dateUpdated">2020-01-19 16:28:25</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2020/01/19/geometry/" target="_blank" rel="external">https://sdlang.ml/2020/01/19/geometry/</a>
+        
+    </div>
+    <footer>
+        <a href="https://sdlang.ml">
+            <img src="/img/avatar.jpg" alt="eee_hoho">
+            eee_hoho
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算几何/">计算几何</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2020/01/19/geometry/&title=《计算几何》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2020/01/19/geometry/&title=《计算几何》 — 咸鱼小屋&source=超级全的计算几何全家桶~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+      
+    <div onclick="ShowGitment()" id="gitment-display-button" style="display: block;">
+        <span>显示 Gitment 评论</span>
+    </div>
+    <div id="gitment" class="hide"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2019/11/01/p2473/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">P2473 [SCOI2008]奖励关</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#图形存储"><span class="post-toc-number">1.</span> <span class="post-toc-text">图形存储</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础计算"><span class="post-toc-number">2.</span> <span class="post-toc-text">基础计算</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                eee_hoho &copy; 2017 - 2020
+            </span>
+        		
+           	
+            
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sdlang.ml/2020/01/19/geometry/&title=《计算几何》 — 咸鱼小屋&pic=https://sdlang.ml/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sdlang.ml/2020/01/19/geometry/&title=《计算几何》 — 咸鱼小屋&source=超级全的计算几何全家桶~" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzUlEQVR42u3aQY7CMAwFUO5/6c6WEUP5tptQjV5WCJXklYVlO3484nW8rOfv3z2f7PZYsXBxccfc43SdP5O/TG//P14JFxd3I/c8GL0+8+6w5PhRQMTFxb0xN3mNfE9cXNz/wU2Sleo3uLi4d+NWU5CktVEtky6u1XBxcQfcvEu57vOS/i4uLm6LexTXeQirFkjl03Fxcbdw84CSEPOkZ3QuLi7uRm5SolTzkGoTJDodFxd3MXfS7Jg/f54Svc3IcHFxF3OroxVJwZOXOvk+uLi4+7mT5mm1UZIPceaBEhcX91pu3gbNRyWqSU+z+MHFxV3MzYnn9F5Jk/8KFxf3u9w8bpSPLO7860/BxcXdyE1KkV4Z02ualIsfXFzcS7nzg3tjGaMRDVxc3K9ye+NZ+fH553IvBxcXdwG32gZNwlZ+e/Mh8OHi4m7kJsVPrxyaX+IWOq+4uLhj7lFceQibXM80/1dcXNyLuNXgko9NJIGpOtKBi4u7k5unONcObOXpVDMjw8XFHXOrjc7JS+bFz4eGKS4u7m241ahSLbeaXRNcXNzbcHtXraMWKi4u7kZu9Solb5hOxkBxcXG/xa2Gkl7xk+xwcX8XFxe3w/0Bj3JSwcMAOM4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        <script type="text/javascript" src="/js/plugins/gitmint.browser.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/gitment.js?v=1.4.4"></script>
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '大爷常来玩啊!(*^▽^*)';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!大爷来玩啦!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[计算几何]]></title>
+    <url>%2F2020%2F01%2F19%2Fgeometry%2F</url>
+    <content type="text"><![CDATA[超级全的计算几何全家桶~ 好久没写博客了= = 正好刚听学长讲了计算几何，就收录下一些相关操作吧 图形存储 点：我们可以直接存储x,y坐标或x,y,z坐标 向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示 Code1234struct node //或Vector&#123; double x,y;&#125;; 直线：用两个点或一个点和一个向量的形式 基础计算后面的$\vec{a},\vec{b}$均为$\vec{a}=(x_1,y_1),\vec{b}=(x_2,y_2)$，直线$l_1,l_2$均为$p_1+t\vec{v_1},p_2+t\vec{v_2}$ 两点之间距离：$dist=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$ Code1234double dist(node a,node b)&#123; return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));&#125; 向量加、减、数乘、数除：x,y对应操作就行了 **Code12345678910111213141516node operator +(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x + b.x,a.y + b.y&#125;;&#125;node operator -(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x - b.x,a.y - b.y&#125;;&#125;node operator *(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x * b,a.y * b&#125;;&#125;node operator /(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x / b,a.y / b&#125;;&#125; 点乘：$dot(\vec{a},\vec{b})=x_1\cdot x_2+y_1\cdot y_2=|\vec{a}|\cdot|\vec{b}|\cdot \cos\left \langle\vec{a},\vec{b}\right \rangle$ Code1234double dot(node a,node b)&#123; return a.x * b.x + a.y * b.y;&#125; 叉积：$cross(\vec{a},\vec{b})=x_1\cdot y_2-x_2\cdot y_1=\cdot \sin\left \langle\vec{a},\vec{b}\right \rangle$ 1234double cross(node a,node b)&#123; return a.x * b.y - a.y * b.x;&#125; 向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$ 直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$ 点到直线的距离：用等积法求高 先写这么多吧QAQ，有空以后补上]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>计算几何</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[P2473 [SCOI2008]奖励关]]></title>
     <url>%2F2019%2F11%2F01%2Fp2473%2F</url>
     <content type="text"><![CDATA[你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选择，且现在决定不吃的宝物以后也不能再吃）。 宝物一共有n种，系统每次抛出这n种宝物的概率都相同且相互独立。也就是说，即使前k-1 次系统都抛出宝物1（这种情况是有可能出现的，尽管概率非常小），第k次抛出各个宝物的概率依然均为1/n。 获取第 i 种宝物将得到Pi分，但并不是每种宝物都是可以随意获取的。第i种宝物有一个前提宝物集合Si。只有当Si中所有宝物都至少吃过一次，才能吃第i 种宝物（如果系统抛出了一个目前不能吃的宝物，相当于白白的损失了一次机会）。注意，Pi 可以是负数，但如果它是很多高分宝物的前提，损失短期利益而吃掉这个负分宝物将获得更大的长期利益。 假设你采取最优策略，平均情况你一共能在奖励关得到多少分值？ 因为n很小，所以我们可以想到状压，于是设$f_{i,s}$表示到了第i轮并且现在选的物品是集合s时的最大期望 但是因为吃物品有先决条件，所以要多计算很多的概率 所以我们考虑倒推，这样子$f_{i,s}$变成了前i-1轮选的物品集合是s，那么i~k轮的最大期望 这个东西看起来是非常好转移的，转移方程就为 如果这个物品j可以吃，也就是$s\&amp;pr_j=pr_j$，那么可以吃或者不吃，就有$f_{i,s}+=max(f_{i+1,s},f_{i+1,s|(1&lt;&lt;j-1)}+p_j)$ p是分数 如果不能吃，那么久只能$f_{i,s}+=f_{i+1,s}$ 复杂度$O(k2^nn)$ Code1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;const int N = 15;const int K = 100;using namespace std;int n,k,p[N + 5],pr[N + 5];double f[K + 5][1 &lt;&lt; N + 1];int main()&#123; scanf(&quot;%d%d&quot;,&amp;k,&amp;n); int x; for (int i = 1;i &lt;= n;i++) &#123; scanf(&quot;%d&quot;,&amp;p[i]); scanf(&quot;%d&quot;,&amp;x); while (x != 0) &#123; pr[i] |= 1 &lt;&lt; x - 1; scanf(&quot;%d&quot;,&amp;x); &#125; &#125; for (int i = k;i &gt;= 1;i--) for (int s = 0;s &lt; (1 &lt;&lt; n);s++) &#123; for (int j = 1;j &lt;= n;j++) if ((s &amp; pr[j]) == pr[j]) f[i][s] += max(f[i + 1][s],f[i + 1][s | (1 &lt;&lt; j - 1)] + 1.0 * p[j]) / n; else f[i][s] += f[i + 1][s] / n; &#125; printf(&quot;%.6lf&quot;,f[1][0]); return 0;&#125;]]></content>
@@ -31,8 +42,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>二分答案</tag>
         <tag>树上dp</tag>
+        <tag>二分答案</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +166,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>倍增</tag>
         <tag>树上dp</tag>
+        <tag>倍增</tag>
         <tag>动态dp</tag>
       </tags>
   </entry>
