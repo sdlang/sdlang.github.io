@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sdlang.ml/task/index.html</loc>
+    
+    <lastmod>2020-01-19T08:49:18.914Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sdlang.ml/2020/01/19/geometry/</loc>
     
     <lastmod>2020-01-19T08:45:05.079Z</lastmod>
@@ -89,13 +96,6 @@
     <loc>https://sdlang.ml/about/index.html</loc>
     
     <lastmod>2019-10-22T10:50:30.400Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://sdlang.ml/task/index.html</loc>
-    
-    <lastmod>2019-10-22T10:48:39.943Z</lastmod>
     
   </url>
   
