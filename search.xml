@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[计算几何]]></title>
     <url>%2F2020%2F01%2F19%2Fgeometry%2F</url>
-    <content type="text"><![CDATA[超级全的计算几何全家桶~ 好久没写博客了= = 正好刚听学长讲了计算几何，就收录下一些相关操作吧 图形存储 点：我们可以直接存储x,y坐标或x,y,z坐标 向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示 Code1234struct node //或Vector&#123; double x,y;&#125;; 直线：用两个点或一个点和一个向量的形式 基础计算后面的$\vec{a},\vec{b}$均为$\vec{a}=(x_1,y_1),\vec{b}=(x_2,y_2)$，直线$l_1,l_2$均为$p_1+t\vec{v_1},p_2+t\vec{v_2}$ 两点之间距离：$dist=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$ Code1234double dist(node a,node b)&#123; return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));&#125; 向量加、减、数乘、数除：x,y对应操作就行了 Code12345678910111213141516node operator +(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x + b.x,a.y + b.y&#125;;&#125;node operator -(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x - b.x,a.y - b.y&#125;;&#125;node operator *(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x * b,a.y * b&#125;;&#125;node operator /(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x / b,a.y / b&#125;;&#125; 点乘：$dot(\vec{a},\vec{b})=x_1\cdot x_2+y_1\cdot y_2=|\vec{a}|\cdot|\vec{b}|\cdot \cos\left \langle\vec{a},\vec{b}\right \rangle$ Code1234double dot(node a,node b)&#123; return a.x * b.x + a.y * b.y;&#125; 叉积：$cross(\vec{a},\vec{b})=x_1\cdot y_2-x_2\cdot y_1=\cdot \sin\left \langle\vec{a},\vec{b}\right \rangle$ 1234double cross(node a,node b)&#123; return a.x * b.y - a.y * b.x;&#125; 向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$ 直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=p_1-p_2,t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$p_1+t_1\vec{v_1}$ 点到直线的距离：用等积法求高 先写这么多吧QAQ，有空以后补上]]></content>
+    <content type="text"><![CDATA[超级全的计算几何全家桶~ 好久没写博客了= = 正好刚听学长讲了计算几何，就收录下一些相关操作吧 图形存储 点：我们可以直接存储x,y坐标或x,y,z坐标 向量：起点在原点的向量用x,y坐标或x,y,z坐标表示，任意一个向量可以用两个向量相减的形式表示 1234struct node //或Vector&#123; double x,y;&#125;; 直线：用两个点或一个点和一个向量的形式 1234struct line //直线&#123; node p,v;&#125;; 多边形：按顺时针或逆时针把点存起来，相邻点有连线 12345struct polygon //多边形&#123; int n; //边数 node p[N + 5]; //点&#125;; 误差避免 计算机存储浮点数会有些许误差，所以一般我们设一个很小的数$eps=10^{-6}$来避免误差 123456789101112const double eps = 1e-6;int com(double a,double b) //比较a和b的大小&#123; double x = a - b; if (fabs(x) &lt; eps) return 0; else if (x &gt; 0) return 1; else return -1;&#125; 基础计算后面的$\vec{a},\vec{b}$均为$\vec{a}=(x_1,y_1),\vec{b}=(x_2,y_2)$，直线$l_1,l_2$均为$\vec{p_1}+t\vec{v_1},\vec{p_2}+t\vec{v_2}$ 两点之间距离：$dist=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$ 1234double dist(node a,node b) //两点之间的距离&#123; return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));&#125; 向量加、减、数乘、数除：x,y对应操作就行了 12345678910111213141516node operator +(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x + b.x,a.y + b.y&#125;;&#125;node operator -(const node &amp;a,const node &amp;b)&#123; return (node)&#123;a.x - b.x,a.y - b.y&#125;;&#125;node operator *(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x * b,a.y * b&#125;;&#125;node operator /(const node &amp;a,const double &amp;b)&#123; return (node)&#123;a.x / b,a.y / b&#125;;&#125; 点乘：$dot(\vec{a},\vec{b})=x_1\cdot x_2+y_1\cdot y_2=|\vec{a}|\cdot|\vec{b}|\cdot \cos\left \langle\vec{a},\vec{b}\right \rangle$ 1234double dot(node a,node b) //点乘&#123; return a.x * b.x + a.y * b.y;&#125; 模长：$|\vec{a}|=\sqrt{|dot(\vec{a},\vec{a})|}$ 1234double molen(node a) //模长&#123; return sqrt(fabs(dot(a,a)));&#125; 叉积：$cross(\vec{a},\vec{b})=x_1\cdot y_2-x_2\cdot y_1=|\vec{a}|\cdot|\vec{b}|\cdot \sin\left \langle\vec{a},\vec{b}\right \rangle$ 1234double cross(node a,node b) //叉积&#123; return a.x * b.y - a.y * b.x;&#125; 向量旋转$\alpha$弧度：$x’=x\cos\alpha-y\sin\alpha,y’=x\sin\alpha+y\cos\alpha$ 1234node rot(node x,double a) //旋转&#123; return (node)&#123;x.x * cos(a) - x.y * sin(a),x.x * sin(a) + x.y * cos(a)&#125;;&#125; 直线交点：由方程算出交点在任何一条直线上的$t$，再算交点，设$\vec{u}=\vec{p_1}-\vec{p_2},t_1=\frac{cross(\vec{v_1},\vec{u})}{cross(\vec{v_1},\vec{v_2})}$，交点即为$\vec{p_1}+t_1\vec{v_1}$ 123456node linepoint(line a,line b) //直线交点&#123; node u = a.p - b.p; double t = cross(a.v,u) / cross(a.v,b.v); return a.p + a.v * t;&#125; 点到直线的距离：在直线任取两个点用等积法求高 12345double pointlinedist(node a,line l) //点到直线的距离&#123; node x = l.p + l.v * 2.33,y = l.p + l.v * 6.66; return fabs(cross(a - x,y - x)) / molen(x - y);&#125; 点到线段的距离：要分两种情况讨论 过点的垂线不过线段：距离为点和线段端点的连线长度 过点的垂线过线段：距离就是垂线长度 至于怎么判断：利用点乘的性质(夹角小于$90^\circ$为正否则为负)，设线段两端点为$A,B$，线段外的点为$C$，若$dot(\vec{AC},\vec{AB})0$（反向），则为情况1，否则为情况2 1234567891011double pointline_Seg(node c,node a,node b) //点到线段的距离&#123; node l1 = b - a,l2 = c - a,l3 = c - b; if (com(dot(l1,l2),0) &lt; 0) return molen(l2); else if (com(dot(l1,l3),0) &gt; 0) return molen(l3); else return fabs(cross(l1,l2)) / molen(l1);&#125; 多边形面积计算：将一个有$n$个边的划分成$n-2$个三角形，然后算面积（也就是叉积）的和，注意叉积不能取绝对值，要最后取绝对值，因为对于凹多边形会有多算的面积 1234567double polygon_S(polygon a)&#123; double s = 0; for (int i = 1;i &lt; a.n - 1;i++) s += cross(a.p[i + 1] - a.p[1],a.p[i + 2] - a.p[1]) / 2; return fabs(s);&#125; 先写这么多吧QAQ，有空以后补上]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
@@ -42,8 +42,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树上dp</tag>
         <tag>二分答案</tag>
+        <tag>树上dp</tag>
       </tags>
   </entry>
   <entry>
@@ -166,8 +166,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树上dp</tag>
         <tag>倍增</tag>
+        <tag>树上dp</tag>
         <tag>动态dp</tag>
       </tags>
   </entry>
@@ -479,22 +479,9 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>组合数</tag>
         <tag>lucas</tag>
-        <tag>中国剩余定理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Catalan数]]></title>
-    <url>%2F2019%2F06%2F25%2FCatalan%2F</url>
-    <content type="text"><![CDATA[学了$Catalan$数，赶紧复习怕自己忘记 先丢个问题吧 问题：给$n$个$0$和$n$个$1$，它们按照某种顺序排成长度为$2n$的数列，对于每个前缀，$0$的数量都不少于$1$的数量的数列个数。 解：令这些数排成一个长度为$2n$的数列，且不满足每个前缀中$0$的数列不少于$1$的数量，那么必定存在一个最小的位置$2i+1∈[1,2n]$，使得这个前缀中有$i$个$0$，$i+1$个$1$，而对后面的数取反后，有$n-i-1$个$0$，$n-i$个$1$，于是我们得到了一个有$n-1$个$0$，$n+1$个$1$排成的数列。 同理，如果把有$n-1$个$0$，$n+1$个$1$排成的数列继续进行上述操作，就得到了有$n$个$0$，$n$个$1$排成的数列。 这便构成了一个双射： 由$n$个$0$和$n$个$1$排成的存在一个前缀中$1$比$0$多的数列。 由$n-1$个$0$和$n+1$个$1$排成的数列。 然后式子就出来了 Cat_n=C_{2n}^n-C_{2n}^{n-1}=\frac{(2n)!}{n!\times n!}-\frac{(2n)!}{(n-1)!\times(n+1)!}=\frac{1}{n+1}\times C_{2n}^n这就是卡特兰$(Catalan)$数了]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>卡特兰数</tag>
         <tag>组合数</tag>
+        <tag>中国剩余定理</tag>
       </tags>
   </entry>
   <entry>
@@ -506,8 +493,21 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>组合数</tag>
         <tag>lucas</tag>
+        <tag>组合数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Catalan数]]></title>
+    <url>%2F2019%2F06%2F25%2FCatalan%2F</url>
+    <content type="text"><![CDATA[学了$Catalan$数，赶紧复习怕自己忘记 先丢个问题吧 问题：给$n$个$0$和$n$个$1$，它们按照某种顺序排成长度为$2n$的数列，对于每个前缀，$0$的数量都不少于$1$的数量的数列个数。 解：令这些数排成一个长度为$2n$的数列，且不满足每个前缀中$0$的数列不少于$1$的数量，那么必定存在一个最小的位置$2i+1∈[1,2n]$，使得这个前缀中有$i$个$0$，$i+1$个$1$，而对后面的数取反后，有$n-i-1$个$0$，$n-i$个$1$，于是我们得到了一个有$n-1$个$0$，$n+1$个$1$排成的数列。 同理，如果把有$n-1$个$0$，$n+1$个$1$排成的数列继续进行上述操作，就得到了有$n$个$0$，$n$个$1$排成的数列。 这便构成了一个双射： 由$n$个$0$和$n$个$1$排成的存在一个前缀中$1$比$0$多的数列。 由$n-1$个$0$和$n+1$个$1$排成的数列。 然后式子就出来了 Cat_n=C_{2n}^n-C_{2n}^{n-1}=\frac{(2n)!}{n!\times n!}-\frac{(2n)!}{(n-1)!\times(n+1)!}=\frac{1}{n+1}\times C_{2n}^n这就是卡特兰$(Catalan)$数了]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>组合数</tag>
+        <tag>卡特兰数</tag>
       </tags>
   </entry>
   <entry>
