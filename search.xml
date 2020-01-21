@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[P2473 [SCOI2008]奖励关]]></title>
     <url>%2F2019%2F11%2F01%2Fp2473%2F</url>
-    <content type="text"><![CDATA[你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选择，且现在决定不吃的宝物以后也不能再吃）。 宝物一共有n种，系统每次抛出这n种宝物的概率都相同且相互独立。也就是说，即使前k-1 次系统都抛出宝物1（这种情况是有可能出现的，尽管概率非常小），第k次抛出各个宝物的概率依然均为1/n。 获取第 i 种宝物将得到Pi分，但并不是每种宝物都是可以随意获取的。第i种宝物有一个前提宝物集合Si。只有当Si中所有宝物都至少吃过一次，才能吃第i 种宝物（如果系统抛出了一个目前不能吃的宝物，相当于白白的损失了一次机会）。注意，Pi 可以是负数，但如果它是很多高分宝物的前提，损失短期利益而吃掉这个负分宝物将获得更大的长期利益。 假设你采取最优策略，平均情况你一共能在奖励关得到多少分值？ 因为n很小，所以我们可以想到状压，于是设$f_{i,s}$表示到了第i轮并且现在选的物品是集合s时的最大期望 但是因为吃物品有先决条件，所以要多计算很多的概率 所以我们考虑倒推，这样子$f_{i,s}$变成了前i-1轮选的物品集合是s，那么i~k轮的最大期望 这个东西看起来是非常好转移的，转移方程就为 如果这个物品j可以吃，也就是$s\&amp;pr_j=pr_j$，那么可以吃或者不吃，就有$f_{i,s}+=max(f_{i+1,s},f_{i+1,s|(1&lt;&lt;j-1)}+p_j)$ p是分数 如果不能吃，那么久只能$f_{i,s}+=f_{i+1,s}$ 复杂度$O(k2^nn)$ Code1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;const int N = 15;const int K = 100;using namespace std;int n,k,p[N + 5],pr[N + 5];double f[K + 5][1 &lt;&lt; N + 1];int main()&#123; scanf(&quot;%d%d&quot;,&amp;k,&amp;n); int x; for (int i = 1;i &lt;= n;i++) &#123; scanf(&quot;%d&quot;,&amp;p[i]); scanf(&quot;%d&quot;,&amp;x); while (x != 0) &#123; pr[i] |= 1 &lt;&lt; x - 1; scanf(&quot;%d&quot;,&amp;x); &#125; &#125; for (int i = k;i &gt;= 1;i--) for (int s = 0;s &lt; (1 &lt;&lt; n);s++) &#123; for (int j = 1;j &lt;= n;j++) if ((s &amp; pr[j]) == pr[j]) f[i][s] += max(f[i + 1][s],f[i + 1][s | (1 &lt;&lt; j - 1)] + 1.0 * p[j]) / n; else f[i][s] += f[i + 1][s] / n; &#125; printf(&quot;%.6lf&quot;,f[1][0]); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[你正在玩你最喜欢的电子游戏，并且刚刚进入一个奖励关。在这个奖励关里，系统将依次随机抛出k次宝物，每次你都可以选择吃或者不吃（必须在抛出下一个宝物之前做出选择，且现在决定不吃的宝物以后也不能再吃）。 宝物一共有n种，系统每次抛出这n种宝物的概率都相同且相互独立。也就是说，即使前k-1 次系统都抛出宝物1（这种情况是有可能出现的，尽管概率非常小），第k次抛出各个宝物的概率依然均为1/n。 获取第 i 种宝物将得到Pi分，但并不是每种宝物都是可以随意获取的。第i种宝物有一个前提宝物集合Si。只有当Si中所有宝物都至少吃过一次，才能吃第i 种宝物（如果系统抛出了一个目前不能吃的宝物，相当于白白的损失了一次机会）。注意，Pi 可以是负数，但如果它是很多高分宝物的前提，损失短期利益而吃掉这个负分宝物将获得更大的长期利益。 假设你采取最优策略，平均情况你一共能在奖励关得到多少分值？ 因为n很小，所以我们可以想到状压，于是设$f_{i,s}$表示到了第i轮并且现在选的物品是集合s时的最大期望 但是因为吃物品有先决条件，所以要多计算很多的概率 所以我们考虑倒推，这样子$f_{i,s}$变成了前i-1轮选的物品集合是s，那么i~k轮的最大期望 这个东西看起来是非常好转移的，转移方程就为 如果这个物品j可以吃，也就是$s\&amp;pr_j=pr_j$，那么可以吃或者不吃，就有$f_{i,s}+=max(f_{i+1,s},f_{i+1,s|(1&lt;&lt;j-1)}+p_j)$ p是分数 如果不能吃，那么久只能$f_{i,s}+=f_{i+1,s}$ 复杂度$O(k2^nn)$ Code1234567891011121314151617181920212223242526272829303132333435#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cstring&gt;const int N = 15;const int K = 100;using namespace std;int n,k,p[N + 5],pr[N + 5];double f[K + 5][1 &lt;&lt; N + 1];int main()&#123; scanf("%d%d",&amp;k,&amp;n); int x; for (int i = 1;i &lt;= n;i++) &#123; scanf("%d",&amp;p[i]); scanf("%d",&amp;x); while (x != 0) &#123; pr[i] |= 1 &lt;&lt; x - 1; scanf("%d",&amp;x); &#125; &#125; for (int i = k;i &gt;= 1;i--) for (int s = 0;s &lt; (1 &lt;&lt; n);s++) &#123; for (int j = 1;j &lt;= n;j++) if ((s &amp; pr[j]) == pr[j]) f[i][s] += max(f[i + 1][s],f[i + 1][s | (1 &lt;&lt; j - 1)] + 1.0 * p[j]) / n; else f[i][s] += f[i + 1][s] / n; &#125; printf("%.6lf",f[1][0]); return 0;&#125;]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -265,8 +265,8 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>树链剖分</tag>
         <tag>线段树</tag>
+        <tag>树链剖分</tag>
       </tags>
   </entry>
   <entry>
@@ -479,22 +479,9 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>lucas</tag>
         <tag>组合数</tag>
+        <tag>lucas</tag>
         <tag>中国剩余定理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Lucas定理以及证明]]></title>
-    <url>%2F2019%2F06%2F25%2FLucas%2F</url>
-    <content type="text"><![CDATA[对着无数篇博客终于$yy$懂了$Lucas$定理，兴奋之际赶紧写下来 内容如果$p$是质数，那么$C_{n}^{m}\equiv C_{n\mod p}^{m\mod p}\times C_{n/p}^{m/p}(mod p)$ 证明首先我们要知道一个性质： 如果$p$为质数，那么有$C_{p}^{n}\equiv 0(mod p)$，其中$n\ne 0,p$ 这个很显然吧，考虑把组合数的式子写出来：$C_p^n=\frac{p!}{n!(p-n)!}$ 把$p$提出来就变成了$\frac{(p-1)!}{n!(p-n)!}\times p$，就证完了 这个性质有什么用呢？别着急，我们先往下走 由二项式定理得：$(x+1)^p=\sum _{i=0}^{p}C_p^i\times x^i$ 而根据上面的性质，因为$n$只有在等于$0$或$p$时才为$1$，其余时都为$0$得到在模$p$意义下 (x+1)^p\equiv x^p+1(mod\ p)设$n=\left \lfloor \frac{n}{p} \right \rfloor\times p+n mod p$ 那么可得$(x+1)^n\equiv (x+1)^{\left \lfloor \frac{n}{p} \right \rfloor\times p}+(x+1)^{n mod p}(mod p)$ 替换得$(x+1)^n\equiv (x^p+1)^{\left \lfloor \frac{n}{p} \right \rfloor}+(x+1)^{n mod p}(mod p)$ 根据二项式定理，展开得 \sum_{i=0}^{n}C_n^i\times x^i\equiv \sum_{j=0}^{\left \lfloor \frac{n}{p} \right \rfloor}C_{\left \lfloor \frac{n}{p} \right \rfloor}^j\times x^j+\sum_{k=0}^{n\ mod\ p}C_{n\ mod\ p}^{k}\times x^k(mod\ p)观察这个式子，我们发现对于每一个$i$，都一定存在$j,k$与其对应，保证$x^i=x^j\times x^k$，约掉之后就是$Lucas$了 证毕 代码很好写，丢下板子题代码QAQ12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;iostream&gt;#include &lt;cstdio&gt;#define int long longusing namespace std;int t,m,n,p;int mypow(int a,int x)&#123; int s=1; while (x) &#123; if (x&amp;1)s=s*a%p; a=a*a%p; x&gt;&gt;=1; &#125; return s;&#125;int C(int m,int n)&#123; if (m&gt;n)return 0; int a=1,b=1; for (int i=1;i&lt;=n;i++)a=a*i%p; for (int i=1;i&lt;=m;i++)b=b*i%p; for (int i=1;i&lt;=n-m;i++)b=b*i%p; return a*mypow(b,p-2)%p;&#125;int lucas(int m,int n)&#123; if (!m)return 1; return C(m%p,n%p)*lucas(m/p,n/p)%p;&#125;signed main()&#123; cin&gt;&gt;t; while (t--) &#123; cin&gt;&gt;n&gt;&gt;m&gt;&gt;p; cout&lt;&lt;lucas(m,m+n)&lt;&lt;endl; &#125; return 0;&#125; 扩展$Lucas$我会尽快学了补上的QAQ]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>数论</tag>
-        <tag>lucas</tag>
-        <tag>组合数</tag>
       </tags>
   </entry>
   <entry>
@@ -506,8 +493,21 @@
       </categories>
       <tags>
         <tag>数论</tag>
-        <tag>组合数</tag>
         <tag>卡特兰数</tag>
+        <tag>组合数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Lucas定理以及证明]]></title>
+    <url>%2F2019%2F06%2F25%2FLucas%2F</url>
+    <content type="text"><![CDATA[对着无数篇博客终于$yy$懂了$Lucas$定理，兴奋之际赶紧写下来 内容如果$p$是质数，那么$C_{n}^{m}\equiv C_{n\mod p}^{m\mod p}\times C_{n/p}^{m/p}(mod p)$ 证明首先我们要知道一个性质： 如果$p$为质数，那么有$C_{p}^{n}\equiv 0(mod p)$，其中$n\ne 0,p$ 这个很显然吧，考虑把组合数的式子写出来：$C_p^n=\frac{p!}{n!(p-n)!}$ 把$p$提出来就变成了$\frac{(p-1)!}{n!(p-n)!}\times p$，就证完了 这个性质有什么用呢？别着急，我们先往下走 由二项式定理得：$(x+1)^p=\sum _{i=0}^{p}C_p^i\times x^i$ 而根据上面的性质，因为$n$只有在等于$0$或$p$时才为$1$，其余时都为$0$得到在模$p$意义下 (x+1)^p\equiv x^p+1(mod\ p)设$n=\left \lfloor \frac{n}{p} \right \rfloor\times p+n mod p$ 那么可得$(x+1)^n\equiv (x+1)^{\left \lfloor \frac{n}{p} \right \rfloor\times p}+(x+1)^{n mod p}(mod p)$ 替换得$(x+1)^n\equiv (x^p+1)^{\left \lfloor \frac{n}{p} \right \rfloor}+(x+1)^{n mod p}(mod p)$ 根据二项式定理，展开得 \sum_{i=0}^{n}C_n^i\times x^i\equiv \sum_{j=0}^{\left \lfloor \frac{n}{p} \right \rfloor}C_{\left \lfloor \frac{n}{p} \right \rfloor}^j\times x^j+\sum_{k=0}^{n\ mod\ p}C_{n\ mod\ p}^{k}\times x^k(mod\ p)观察这个式子，我们发现对于每一个$i$，都一定存在$j,k$与其对应，保证$x^i=x^j\times x^k$，约掉之后就是$Lucas$了 证毕 代码很好写，丢下板子题代码QAQ12345678910111213141516171819202122232425262728293031323334353637383940#include &lt;iostream&gt;#include &lt;cstdio&gt;#define int long longusing namespace std;int t,m,n,p;int mypow(int a,int x)&#123; int s=1; while (x) &#123; if (x&amp;1)s=s*a%p; a=a*a%p; x&gt;&gt;=1; &#125; return s;&#125;int C(int m,int n)&#123; if (m&gt;n)return 0; int a=1,b=1; for (int i=1;i&lt;=n;i++)a=a*i%p; for (int i=1;i&lt;=m;i++)b=b*i%p; for (int i=1;i&lt;=n-m;i++)b=b*i%p; return a*mypow(b,p-2)%p;&#125;int lucas(int m,int n)&#123; if (!m)return 1; return C(m%p,n%p)*lucas(m/p,n/p)%p;&#125;signed main()&#123; cin&gt;&gt;t; while (t--) &#123; cin&gt;&gt;n&gt;&gt;m&gt;&gt;p; cout&lt;&lt;lucas(m,m+n)&lt;&lt;endl; &#125; return 0;&#125; 扩展$Lucas$我会尽快学了补上的QAQ]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>组合数</tag>
+        <tag>lucas</tag>
       </tags>
   </entry>
   <entry>
